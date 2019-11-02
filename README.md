@@ -1,2 +1,2 @@
-# MERN-BoilerPlate
-MERN BoilerPlate
+# Express, React and Webpack-BoilerPlate
+React and Webpack-BoilerPlate
