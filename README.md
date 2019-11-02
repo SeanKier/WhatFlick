@@ -1,5 +1,5 @@
 # Express, React and Webpack-BoilerPlate
-React and Webpack-BoilerPlate
+Simple Express, React and Webpack-BoilerPlate setup
 ## Setup
 1. npm install
 2. npm run start 
