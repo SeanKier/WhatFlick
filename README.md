@@ -1,5 +1,5 @@
-# Express, React and Webpack-BoilerPlate
-Simple Express, React and Webpack-BoilerPlate setup
+# WatchTonight
+Site to find movies to watch currently on streaming services
 ## Setup
 1. npm install
 2. npm run start 
