@@ -1,0 +1,40 @@
+@import url(//db.onlinewebfonts.com/c/ab83b275830b2d585ea027c47e3b237a?family=GraphiqueW01-Regular);
+
+#site-title {
+  font-family: "GraphiqueW01-Regular";
+  font-size: 5vw;
+  /* color: red; */
+  /* background-color: red; */
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.center {
+  display: inline-block;
+}
+
+.btn-clear {
+  border: none;
+  background: transparent;
+}
+
+.nav-link {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+ }
+
+ li :hover {
+  background-color: #111111;
+  color: white;
+}
