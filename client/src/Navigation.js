@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// todo: use classnames to highlight slected genre
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
-const NavBar = ({ options }) => (
-  <ul>
-    {options.map((genre) =>
-      <li key={genre}>
-        <button className='btn-clear nav-link'>
-          {genre}
-        </button>
-      </li>
-    )}
-  </ul>
+const NavBar = ({ options, currentGenre, changeGenre }) => (
+    <ul>
+      {options.map((genre) => (
+        <li key={genre}>
+          <button
+            className={classnames(
+              'btn-clear nav-link',
+              { active: genre === currentGenre }
+            )}
+            onClick={changeGenre}
+          >
+            {genre}
+          </button>
+        </li>
+      ))}
+    </ul>
 );
+
+NavBar.propTypes = {
+  options: PropTypes.array.isRequired,
+  currentGenre: PropTypes.string.isRequired,
+  changeGenre: PropTypes.func.isRequired
+};
+
 
 export default NavBar;

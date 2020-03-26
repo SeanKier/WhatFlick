@@ -38,3 +38,7 @@ ul {
   background-color: #111111;
   color: white;
 }
+
+.active {
+  color: red;
+}
