@@ -2,7 +2,8 @@
 
 #site-title {
   font-family: "GraphiqueW01-Regular";
-  font-size: 5vw;
+  font-size: 100px;
+  margin: 20px;
   /* color: red; */
   /* background-color: red; */
 }
