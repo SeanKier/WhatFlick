@@ -4,8 +4,6 @@
   font-family: "GraphiqueW01-Regular";
   font-size: 100px;
   margin: 20px;
-  /* color: red; */
-  /* background-color: red; */
 }
 
 .wrapper {
@@ -42,4 +40,27 @@ ul {
 
 .active {
   color: red;
+}
+
+#movies-container {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 1200px;
+}
+
+#single-movie-container {
+  width: 255px;
+  margin: 15px;
+}
+
+.avatar {
+  width: 230px;
+  border-radius: 5px;
+}
+
+.description {
+  text-align: left;
 }
