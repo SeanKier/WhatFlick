@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 const CurrentMovie = ({ currentMovie }) => {
   const { title, poster_path, vote_average, overview } = currentMovie;
+  let description = overview;
+  if (overview.length > 150) {
+    description = overview.slice(0, 150) + '...';
+  }
 
   return (
     <div id="single-movie-container">
@@ -10,15 +14,15 @@ const CurrentMovie = ({ currentMovie }) => {
         {title}
       </h2>
       <img
-        className='avatar'
+        className="avatar"
         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
         alt={`Avatar for ${title}`}
       />
       <h4>
         {vote_average}
       </h4>
-      <p>
-        {overview}
+      <p className="description">
+        {description}
       </p>
     </div>
   );
