@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaStar } from 'react-icons/fa';
 
 const CurrentMovie = ({ currentMovie }) => {
   const { title, poster_path, vote_average, overview } = currentMovie;
@@ -9,19 +10,26 @@ const CurrentMovie = ({ currentMovie }) => {
   }
 
   return (
-    <div id="single-movie-container">
+    <div
+      id="single-movie-container"
+      className="rounded"
+    >
       <h2>
         {title}
       </h2>
       <img
-        className="avatar"
+        className="avatar rounded"
         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
         alt={`Avatar for ${title}`}
       />
-      <h4>
-        {vote_average}
-      </h4>
-      <p className="description">
+      <div id="star">
+        <FaStar color='rgb(255, 215, 0)' size={22} />
+        <span className="vote">
+          {vote_average}
+        </span>
+        <FaStar color='rgb(255, 215, 0)' size={22} />
+      </div>
+      <p className="description rounded">
         {description}
       </p>
     </div>

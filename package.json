@@ -23,7 +23,8 @@
     "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-icons": "^3.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

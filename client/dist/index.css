@@ -47,20 +47,32 @@ ul {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
-  max-width: 1200px;
+  justify-content: center;
+  max-width: 1500px;
 }
 
 #single-movie-container {
-  width: 255px;
+  background-color: rgb(233, 233, 233);
+  width: 300px;
   margin: 15px;
 }
 
 .avatar {
   width: 230px;
-  border-radius: 5px;
 }
 
 .description {
   text-align: left;
+  background-color: white;
+  margin: 10px;
+  padding: 5px;
+}
+
+.vote {
+  font-size: 20px;
+  margin: 5px;
+}
+
+.rounded {
+  border-radius: 5px;
 }
