@@ -1,26 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './Navigation';
 import Movies from './Movies';
 import api_key from './APIKEY';
 
-class App extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      genre: 'Now Playing',
-      movies: [],
-      error: null
-    };
-    this.changeGenre = this.changeGenre.bind(this);
-    this.getData = this.getData.bind(this);
-  }
+const App = (props) => {
+  const [genre, changeGenre] = useState('Now Playing');
+  const [movies, updateMovies] = useState([]);
 
-  componentDidMount() {
-    this.getData(this.state.genre);
+  const updateNewGenre = (event) => {
+    const newGenre = event.target.innerHTML;
+    if (newGenre !== genre) {
+      getData(newGenre);
+    }
   }
+  useEffect(() => {
+    getData(genre);
+  }, []);
 
-  getData (genre) {
+  const getData = (genre) => {
     const options = {
       'Now Playing': 'now_playing',
       'Popular': 'popular',
@@ -32,34 +30,24 @@ class App extends React.Component {
         return response.json();
       })
       .then(response => {
-        this.setState({
-          genre: genre,
-          movies: response.results
-        })
+        changeGenre(genre);
+        updateMovies(response.results);
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  changeGenre(event) {
-    const newGenre = event.target.innerHTML;
-    if (newGenre !== this.state.genre) {
-      this.getData(newGenre);
-    }
-  }
-  render() {
-    const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
-    const { genre, movies, error } = this.state;
+  const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
-    return (
-      <div className="wrapper">
-        <h1 id="site-title" className="center">Watch Tonight</h1>
-        <Navbar options={genres} currentGenre={genre} changeGenre={this.changeGenre} />
-        <Movies currentMovies={movies}/>
-      </div>
-    )
-  }
+  return (
+    <div className="wrapper">
+      <h1 id="site-title" className="center">Watch Tonight</h1>
+      <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
+      <Movies currentMovies={movies}/>
+      <Hooks />
+    </div>
+  );
 }
 ReactDOM.render(
   <App />,
