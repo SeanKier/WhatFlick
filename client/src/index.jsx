@@ -34,7 +34,7 @@ const App = (props) => {
     }
 
     if (newGenre === genre) {
-      fetch(`https://api.themoviedb.org/3/movie/${options[newGenre]}?api_key=${api_key}&language=en-US&page=${page}`)
+      fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=${page}`)
       .then(response => {
         return response.json();
       })
@@ -50,7 +50,7 @@ const App = (props) => {
         console.log(err);
       });
     } else {
-      fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=1`)
+      fetch(`https://api.themoviedb.org/3/movie/${options[newGenre]}?api_key=${api_key}&language=en-US&page=1`)
       .then(response => {
         return response.json();
       })
