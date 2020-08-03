@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Navbar from './Navigation';
 import Movies from './Movies';
@@ -25,8 +26,7 @@ const Home = ({ updateID }) => {
     nextPage(page + 1);
   }
 
-  const fetchMovies = ( genre, page, callback) => {
-
+  const fetchMovies = (genre, page, callback) => {
     const options = {
       'Now Playing': 'now_playing',
       'Popular': 'popular',
@@ -46,7 +46,6 @@ const Home = ({ updateID }) => {
   }
 
   const getData = (newGenre) => {
-
     if (newGenre === genre) {
       const updateFeed = (response) => {
         changeGenre(newGenre);
@@ -59,10 +58,10 @@ const Home = ({ updateID }) => {
       fetchMovies(genre, page, updateFeed);
     } else {
       const updateFeed = (response) => {
-        changeGenre(genre);
+        changeGenre(newGenre);
         updateMovies(response.results);
       }
-      updateMovies(newGenre, 1, updateFeed);
+      fetchMovies(newGenre, 1, updateFeed);
     }
 
   }
@@ -83,5 +82,9 @@ const Home = ({ updateID }) => {
     </div>
   );
 }
+
+Home.propTypes = {
+  updateID: PropTypes.number.isRequired
+};
 
 export default Home;

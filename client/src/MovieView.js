@@ -12,6 +12,7 @@ const MovieView = ({ id }) => {
         return response.json();
       })
       .then(response => {
+        console.log(response);
         updateMovie(response);
       })
       .catch(err => {
@@ -20,14 +21,24 @@ const MovieView = ({ id }) => {
   }
   useEffect(() => {
     getMovieData(id);
-  }, []);
+  }, [])
+
+  const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
+
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
   }
   return (
     <div>
-      <h2>This is the view for single movies</h2>
-      <h3>{currentMovie.original_title}</h3>
+      <h3>{title}</h3>
+      <div>{release_date}</div>
+      <img
+        className="avatar rounded"
+        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        alt={`Avatar for ${title}`}
+      />
+      <p>{overview}</p>
+      <div>Popularity: {popularity}</div>
       <Link to='/'>Home</Link>
     </div>
   );

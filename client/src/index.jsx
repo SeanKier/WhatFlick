@@ -23,6 +23,7 @@ const App = () => {
     </Router>
   );
 };
+
 ReactDOM.render(
   <App />,
   document.getElementById('app')
