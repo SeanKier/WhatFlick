@@ -25,7 +25,7 @@ const Home = ({ updateID }) => {
     nextPage(page + 1);
   }
 
-  const getData = (newGenre) => {
+  const fetchMovies = ( genre, page, callback) => {
 
     const options = {
       'Now Playing': 'now_playing',
@@ -33,35 +33,36 @@ const Home = ({ updateID }) => {
       'Top Rated': 'top_rated',
       'Upcoming': 'upcoming'
     }
-
-    if (newGenre === genre) {
-      fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=${page}`)
+    fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=${page}`)
       .then(response => {
         return response.json();
       })
       .then(response => {
+        callback(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  const getData = (newGenre) => {
+
+    if (newGenre === genre) {
+      const updateFeed = (response) => {
         changeGenre(newGenre);
         const items = movies.slice();
         response.results.forEach((item)=> {
           items.push(item);
         })
         updateMovies(items);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      }
+      fetchMovies(genre, page, updateFeed);
     } else {
-      fetch(`https://api.themoviedb.org/3/movie/${options[newGenre]}?api_key=${api_key}&language=en-US&page=1`)
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
+      const updateFeed = (response) => {
         changeGenre(genre);
         updateMovies(response.results);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      }
+      updateMovies(newGenre, 1, updateFeed);
     }
 
   }
