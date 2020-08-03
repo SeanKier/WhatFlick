@@ -25,7 +25,6 @@ const MovieView = ({ id }) => {
   }
 
   const searchYouTube = (query) => {
-    console.log('query>>>>>', query)
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=AIzaSyBzrdWIOJSQBjHOkG25qKt-8cfUbeK3Zws`)
       .then(response => {
         return response.json();
