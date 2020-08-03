@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const CurrentMovie = ({ currentMovie }) => {
-  const { title, poster_path, vote_average, overview } = currentMovie;
+import api_key from './APIKEY';
+import OtherView from './index';
+
+const CurrentMovie = ({ currentMovie, updateID }) => {
+  const { title, poster_path, vote_average, overview, id } = currentMovie;
   let description = overview;
   if (overview.length > 150) {
     description = overview.slice(0, 150) + '...';
+  }
+
+  const updateMovie = (id) => {
+    console.log('id>>>>>>>>>>>>>>>>>', id)
+    updateID(id);
   }
 
   return (
@@ -14,7 +23,8 @@ const CurrentMovie = ({ currentMovie }) => {
       id="single-movie-container"
       className="rounded"
     >
-      <h2>
+      <h2
+      >
         {title}
       </h2>
       <img
@@ -32,6 +42,9 @@ const CurrentMovie = ({ currentMovie }) => {
       <p className="description rounded">
         {description}
       </p>
+
+      <Link onClick={() => updateMovie(id)} to='/other'>MoreInfo</Link>
+
     </div>
   );
 };
@@ -44,10 +57,10 @@ CurrentMovie.propTypes = {
   })
 };
 
-const Movies = ({ currentMovies }) => (
+const Movies = ({ currentMovies, updateID }) => (
   <div id="movies-container">
     {currentMovies.map((movie, i) => (
-      <CurrentMovie key={i} currentMovie={movie}/>
+      <CurrentMovie key={i} currentMovie={movie} updateID={updateID}/>
     ))}
   </div>
 );
