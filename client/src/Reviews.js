@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import api_key from './APIKEY';
+const keys = require('./APIKEY');
 
 const CurrentReview = ({ review }) => {
   return (
@@ -17,12 +17,11 @@ const Reviews = ({ id }) => {
 
   const getReviews = (id) => {
 
-    fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${api_key}&language=en-US&page=1`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${keys.api_key}&language=en-US&page=1`)
       .then(response => {
         return response.json();
       })
       .then(response => {
-        console.log('results>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', response.results);
         updateReviews(response.results);
       })
       .catch(err => {
@@ -34,7 +33,7 @@ const Reviews = ({ id }) => {
   useEffect(() => {
     getReviews(id);
   }, [])
-  
+
   if (currentReviews === []){
     return <div>Loading</div>
   }

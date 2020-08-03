@@ -2,24 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Reviews from './Reviews';
-import api_key from './APIKEY';
+import Youtube from './Youtube';
+
+const keys = require('./APIKEY');
 
 const MovieView = ({ id }) => {
   const [currentMovie, updateMovie] = useState({});
+  const [currentVideoID, getVideo] = useState(null);
 
   const getMovieData = (id) => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${keys.api_key}`)
       .then(response => {
         return response.json();
       })
       .then(response => {
-        console.log(response);
+        searchYouTube(response.title);
         updateMovie(response);
       })
       .catch(err => {
         console.log(err);
       });
   }
+
+  const searchYouTube = (query) => {
+    console.log('query>>>>>', query)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=AIzaSyBzrdWIOJSQBjHOkG25qKt-8cfUbeK3Zws`)
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        getVideo(response.items[0].id.videoId);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getMovieData(id);
   }, [])
@@ -28,6 +46,11 @@ const MovieView = ({ id }) => {
 
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
+  }
+
+  let youtube = <Youtube currentVideoID={currentVideoID} />
+  if (!currentVideoID) {
+    youtube === <div>loading</div>
   }
   return (
     <div>
@@ -42,6 +65,7 @@ const MovieView = ({ id }) => {
       <p>{overview}</p>
       <div>Popularity: {popularity}</div>
       <Reviews id={id} />
+      {youtube}
     </div>
   );
 
