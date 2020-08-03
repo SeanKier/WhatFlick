@@ -73,7 +73,6 @@ const Home = ({ updateID }) => {
       <h1 id="site-title" className="center">Watch Tonight</h1>
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <Movies currentMovies={movies} updateID={updateID}/>
-      <Link to='/other'>MoreInfo</Link>
       <button
         onClick={handleNextPage}
       >

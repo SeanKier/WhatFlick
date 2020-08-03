@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import Reviews from './Reviews';
 import api_key from './APIKEY';
 
 const MovieView = ({ id }) => {
@@ -30,6 +31,7 @@ const MovieView = ({ id }) => {
   }
   return (
     <div>
+      <Link to='/'>Home</Link>
       <h3>{title}</h3>
       <div>{release_date}</div>
       <img
@@ -39,7 +41,7 @@ const MovieView = ({ id }) => {
       />
       <p>{overview}</p>
       <div>Popularity: {popularity}</div>
-      <Link to='/'>Home</Link>
+      <Reviews id={id} />
     </div>
   );
 
