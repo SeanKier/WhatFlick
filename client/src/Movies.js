@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import api_key from './APIKEY';
 import OtherView from './index';
 
 const CurrentMovie = ({ currentMovie, updateID }) => {

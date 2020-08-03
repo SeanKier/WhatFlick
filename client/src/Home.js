@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import Navbar from './Navigation';
 import Movies from './Movies';
-import api_key from './APIKEY';
+
+const keys = require('./APIKEY');
 
 const Home = ({ updateID }) => {
   const [genre, changeGenre] = useState('Now Playing');
@@ -33,7 +34,7 @@ const Home = ({ updateID }) => {
       'Top Rated': 'top_rated',
       'Upcoming': 'upcoming'
     }
-    fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=${page}`)
+    fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${keys.api_key}&language=en-US&page=${page}`)
       .then(response => {
         return response.json();
       })
