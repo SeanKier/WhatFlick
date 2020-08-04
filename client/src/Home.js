@@ -12,10 +12,12 @@ const Home = ({ updateID }) => {
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
   const [subGenre, setSubGenre] = useState('All');
+  const [previousSubGenre, setPreviousSubGenre] = useState(null);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
   const subGenreMap = {
+    'All': 0,
     'Action': 28,
     'Drama': 18,
     'War': 10752,
@@ -47,6 +49,7 @@ const Home = ({ updateID }) => {
   }
 
   const handleChange = (event) => {
+    setPreviousSubGenre(subGenre);
     setSubGenre(event.target.value);
   }
 
@@ -76,7 +79,7 @@ const Home = ({ updateID }) => {
   }
 
   const getData = (newGenre) => {
-    if (newGenre === genre && subGenre === 'All') {
+    if (newGenre === genre && (subGenre === previousSubGenre || previousSubGenre === null)) {
       const updateFeed = (response) => {
         changeGenre(newGenre);
         const items = movies.slice();
@@ -103,6 +106,7 @@ const Home = ({ updateID }) => {
       <label>
           Pick your favorite genre:
           <select value={subGenre} onChange={handleChange}>
+            <option value="All">All</option>
             <option value="Action">Action</option>
             <option value="Drama">Drama</option>
             <option value="War">War</option>
