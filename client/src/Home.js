@@ -83,7 +83,7 @@ const Home = ({ updateID }) => {
   const getNewPage = (newGenre) => {
     const updateFeed = (response) => {
       changeGenre(newGenre);
-      const items = movies.slice();
+      const items = [...movies];
       response.results.forEach((item)=> {
         items.push(item);
       })
