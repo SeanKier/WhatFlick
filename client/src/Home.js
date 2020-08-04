@@ -12,7 +12,6 @@ const Home = ({ updateID }) => {
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
   const [subGenre, setSubGenre] = useState('All');
-  const [previousSubGenre, setPreviousSubGenre] = useState(null);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -53,7 +52,6 @@ const Home = ({ updateID }) => {
   }
 
   const handleChange = (event) => {
-    setPreviousSubGenre(subGenre);
     setSubGenre(event.target.value);
   }
 
