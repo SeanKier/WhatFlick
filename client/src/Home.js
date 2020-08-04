@@ -37,12 +37,16 @@ const Home = ({ updateID }) => {
 
     const newGenre = event.target.innerHTML;
     if (newGenre !== genre) {
-      getData(newGenre);
+      updateDataForGenreChange(newGenre);
     }
   }
   useEffect(() => {
-    getData(genre);
-  }, [page, subGenre]);
+    getNewPage(genre);
+  }, [page]);
+
+  useEffect(() => {
+    updateDataForGenreChange(genre);
+  }, [subGenre]);
 
   const handleNextPage = () => {
     nextPage(page + 1);
@@ -78,25 +82,24 @@ const Home = ({ updateID }) => {
       });
   }
 
-  const getData = (newGenre) => {
-    if (newGenre === genre && (subGenre === previousSubGenre || previousSubGenre === null)) {
-      const updateFeed = (response) => {
-        changeGenre(newGenre);
-        const items = movies.slice();
-        response.results.forEach((item)=> {
-          items.push(item);
-        })
-        updateMovies(items);
-      }
-      fetchMovies(genre, page, updateFeed);
-    } else {
-      const updateFeed = (response) => {
-        changeGenre(newGenre);
-        updateMovies(response.results);
-      }
-      fetchMovies(newGenre, 1, updateFeed);
+  const getNewPage = (newGenre) => {
+    const updateFeed = (response) => {
+      changeGenre(newGenre);
+      const items = movies.slice();
+      response.results.forEach((item)=> {
+        items.push(item);
+      })
+      updateMovies(items);
     }
+    fetchMovies(genre, page, updateFeed);
+  }
 
+  const updateDataForGenreChange = (genre) => {
+    const updateFeed = (response) => {
+      changeGenre(genre);
+      updateMovies(response.results);
+    }
+    fetchMovies(genre, 1, updateFeed);
   }
 
   return (
