@@ -11,6 +11,25 @@ const Home = ({ updateID }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
+  const [subGenre, setSubGenre] = useState('All');
+
+  const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
+
+  const subGenreMap = {
+    'Action': 28,
+    'Drama': 18,
+    'War': 10752,
+    'Family': 10751,
+    'Animation': 16,
+    'Comedy': 35,
+    'Adventure': 12,
+    'Mystery': 9648,
+    'Thriller': 53,
+    'SciFi': 878,
+    'Fantasy': 14,
+    'Horror': 27,
+    'Romance': 10749
+  }
 
   const updateNewGenre = (event) => {
 
@@ -21,10 +40,14 @@ const Home = ({ updateID }) => {
   }
   useEffect(() => {
     getData(genre);
-  }, [page]);
+  }, [page, subGenre]);
 
   const handleNextPage = () => {
     nextPage(page + 1);
+  }
+
+  const handleChange = (event) => {
+    setSubGenre(event.target.value);
   }
 
   const fetchMovies = (genre, page, callback) => {
@@ -34,7 +57,13 @@ const Home = ({ updateID }) => {
       'Top Rated': 'top_rated',
       'Upcoming': 'upcoming'
     }
-    fetch(`https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${keys.api_key}&language=en-US&page=${page}`)
+
+
+    let queryString = `https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${keys.api_key}&language=en-US&page=${page}`;
+    if (subGenre !== 'All') {
+      queryString += `&with_genres=${subGenreMap[subGenre]}`
+    }
+    fetch(queryString)
       .then(response => {
         return response.json();
       })
@@ -47,7 +76,7 @@ const Home = ({ updateID }) => {
   }
 
   const getData = (newGenre) => {
-    if (newGenre === genre) {
+    if (newGenre === genre && subGenre === 'All') {
       const updateFeed = (response) => {
         changeGenre(newGenre);
         const items = movies.slice();
@@ -67,12 +96,27 @@ const Home = ({ updateID }) => {
 
   }
 
-  const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
-
   return (
     <div className="wrapper">
       <h1 id="site-title" className="center">Watch Tonight</h1>
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
+      <label>
+          Pick your favorite genre:
+          <select value={subGenre} onChange={handleChange}>
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="War">War</option>
+            <option value="Animation">Animation</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Thriller">Thriller</option>
+            <option value="SciFi">SciFi</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+          </select>
+        </label>
       <Movies currentMovies={movies} updateID={updateID}/>
       <button
         onClick={handleNextPage}
@@ -84,7 +128,7 @@ const Home = ({ updateID }) => {
 }
 
 Home.propTypes = {
-  updateID: PropTypes.number.isRequired
+  updateID: PropTypes.func.isRequired
 };
 
 export default Home;

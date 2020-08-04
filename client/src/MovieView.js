@@ -16,6 +16,7 @@ const MovieView = ({ id }) => {
         return response.json();
       })
       .then(response => {
+        console.log('response', response)
         searchYouTube(response.title);
         updateMovie(response);
       })
