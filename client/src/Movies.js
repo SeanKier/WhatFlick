@@ -21,15 +21,19 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
       id="single-movie-container"
       className="rounded"
     >
-      <h2
-      >
-        {title}
-      </h2>
-      <img
-        className="avatar rounded"
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-        alt={`Avatar for ${title}`}
-      />
+      <Link onClick={() => updateMovie(id)} to='/other'>
+        <h1>
+          {title}
+        </h1>
+      </Link>
+
+      <Link onClick={() => updateMovie(id)} to='/other'>
+        <img
+              className="avatar rounded"
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              alt={`Avatar for ${title}`}
+        />
+      </Link>
       <div id="star">
         <FaStar color='rgb(255, 215, 0)' size={22} />
         <span className="vote">
