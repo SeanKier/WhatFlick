@@ -6,7 +6,7 @@ import Youtube from './Youtube';
 
 const keys = require('./APIKEY');
 
-const MovieView = ({ id, seeMoreGenres }) => {
+const MovieView = ({ id, setSubGenres }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
 
@@ -16,10 +16,9 @@ const MovieView = ({ id, seeMoreGenres }) => {
         return response.json();
       })
       .then(response => {
-        console.log('response>>>>>>>>>>>>>>', response)
         searchYouTube(response.title);
         updateMovie(response);
-        seeMoreGenres(response.genres);
+        setSubGenres([response.genres[0].name]);
       })
       .catch(err => {
         console.log(err);
@@ -42,7 +41,7 @@ const MovieView = ({ id, seeMoreGenres }) => {
   useEffect(() => {
     getMovieData(id);
   }, [])
-  console.log(currentMovie)
+
   const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
 
   if (currentMovie === {}) {

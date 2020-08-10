@@ -11,7 +11,6 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
-  console.log(subGenres);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -45,7 +44,6 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
 
   useEffect(() => {
     updateDataForGenreChange(genre);
-    console.log('called function')
   }, [subGenres]);
 
   const handleNextPage = () => {
@@ -54,7 +52,6 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
 
   const handleChange = (event) => {
     const newSubGenres = [event.target.value];
-    console.log('nextgenre>>>>>>>>>>>>,', newSubGenres);
     setSubGenres(newSubGenres);
   }
 

@@ -7,7 +7,6 @@ import Home from './Home';
 
 const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
-  const [currentMovieGenres, seeMoreGenres] = useState([]);
   const [subGenres, setSubGenres] = useState(['All']);
 
   return(
@@ -19,7 +18,7 @@ const App = () => {
         />
         <Route
             path="/other"
-            render={(props) => <MovieView {...props} id={currentMovieID} seeMoreGenres={seeMoreGenres} />}
+            render={(props) => <MovieView {...props} id={currentMovieID} setSubGenres={setSubGenres} />}
         />
       </div>
     </Router>
