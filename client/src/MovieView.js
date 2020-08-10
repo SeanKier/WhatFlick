@@ -44,7 +44,7 @@ const MovieView = ({ id, setSubGenres }) => {
   }, [])
 
   const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
-
+  console.log('currentMoview>>', currentMovie);
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
   }
@@ -60,8 +60,8 @@ const MovieView = ({ id, setSubGenres }) => {
       <div>{release_date}</div>
       <img
         className="avatar rounded"
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-        alt={`Avatar for ${title}`}
+        src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+        alt={`Backdrop for ${title}`}
       />
       <p>{overview}</p>
       <div>Popularity: {popularity}</div>
