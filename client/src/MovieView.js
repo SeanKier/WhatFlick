@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Reviews from './Reviews';
 import Youtube from './Youtube';
 
 const keys = require('./APIKEY');
 
-const MovieView = ({ id }) => {
+const MovieView = ({ id, setSubGenres }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
 
@@ -16,9 +17,9 @@ const MovieView = ({ id }) => {
         return response.json();
       })
       .then(response => {
-        console.log('response', response)
         searchYouTube(response.title);
         updateMovie(response);
+        setSubGenres([response.genres[0].name]);
       })
       .catch(err => {
         console.log(err);
@@ -66,9 +67,16 @@ const MovieView = ({ id }) => {
       <div>Popularity: {popularity}</div>
       <Reviews id={id} />
       {youtube}
+      <Link to='/'>See More Movies Like{title}</Link>
+
     </div>
   );
 
+};
+
+MovieView.propTypes = {
+  id: PropTypes.number.isRequired,
+  setSubGenres: PropTypes.func.isRequired
 };
 
 export default  MovieView;

@@ -7,17 +7,18 @@ import Home from './Home';
 
 const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
+  const [subGenres, setSubGenres] = useState(['All']);
 
   return(
     <Router>
       <div>
         <Route
             exact path="/"
-            render={(props) => <Home {...props} updateID={updateMovieID}/>}
+            render={(props) => <Home {...props} updateID={updateMovieID} subGenres={subGenres} setSubGenres={setSubGenres} />}
         />
         <Route
             path="/other"
-            render={(props) => <MovieView {...props} id={currentMovieID} />}
+            render={(props) => <MovieView {...props} id={currentMovieID} setSubGenres={setSubGenres} />}
         />
       </div>
     </Router>
