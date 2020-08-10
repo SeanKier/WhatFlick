@@ -6,7 +6,7 @@ import Youtube from './Youtube';
 
 const keys = require('./APIKEY');
 
-const MovieView = ({ id }) => {
+const MovieView = ({ id, seeMoreGenres }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
 
@@ -16,9 +16,10 @@ const MovieView = ({ id }) => {
         return response.json();
       })
       .then(response => {
-        console.log('response', response)
+        console.log('response>>>>>>>>>>>>>>', response)
         searchYouTube(response.title);
         updateMovie(response);
+        seeMoreGenres(response.genres);
       })
       .catch(err => {
         console.log(err);
@@ -41,7 +42,7 @@ const MovieView = ({ id }) => {
   useEffect(() => {
     getMovieData(id);
   }, [])
-
+  console.log(currentMovie)
   const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
 
   if (currentMovie === {}) {
@@ -66,6 +67,8 @@ const MovieView = ({ id }) => {
       <div>Popularity: {popularity}</div>
       <Reviews id={id} />
       {youtube}
+      <Link to='/'>See More Movies Like{title}</Link>
+
     </div>
   );
 

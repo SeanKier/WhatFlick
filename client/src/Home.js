@@ -7,11 +7,11 @@ import Movies from './Movies';
 
 const keys = require('./APIKEY');
 
-const Home = ({ updateID }) => {
+const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
-  const [subGenre, setSubGenre] = useState('All');
+  console.log(subGenres);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -45,14 +45,17 @@ const Home = ({ updateID }) => {
 
   useEffect(() => {
     updateDataForGenreChange(genre);
-  }, [subGenre]);
+    console.log('called function')
+  }, [subGenres]);
 
   const handleNextPage = () => {
     nextPage(page + 1);
   }
 
   const handleChange = (event) => {
-    setSubGenre(event.target.value);
+    const newSubGenres = [event.target.value];
+    console.log('nextgenre>>>>>>>>>>>>,', newSubGenres);
+    setSubGenres(newSubGenres);
   }
 
   const fetchMovies = (genre, page, callback) => {
@@ -65,8 +68,8 @@ const Home = ({ updateID }) => {
 
 
     let queryString = `https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${keys.api_key}&language=en-US&page=${page}`;
-    if (subGenre !== 'All') {
-      queryString += `&with_genres=${subGenreMap[subGenre]}`
+    if (subGenres[0] !== 'All') {
+      queryString += `&with_genres=${subGenreMap[subGenres[0]]}`
     }
     fetch(queryString)
       .then(response => {
@@ -106,7 +109,7 @@ const Home = ({ updateID }) => {
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>
           Pick your favorite genre:
-          <select value={subGenre} onChange={handleChange}>
+          <select value={subGenres[0]} onChange={handleChange}>
             <option value="All">All</option>
             <option value="Action">Action</option>
             <option value="Drama">Drama</option>
