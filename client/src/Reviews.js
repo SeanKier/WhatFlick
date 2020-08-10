@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const keys = require('./APIKEY');
 
@@ -10,6 +11,13 @@ const CurrentReview = ({ review }) => {
     </div>
   );
 }
+
+CurrentReview.propTypes = {
+  review: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  })
+};
 
 const Reviews = ({ id }) => {
 
@@ -46,5 +54,9 @@ const Reviews = ({ id }) => {
   );
 
 }
+
+Reviews.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default Reviews;

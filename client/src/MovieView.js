@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Reviews from './Reviews';
 import Youtube from './Youtube';
@@ -71,6 +72,11 @@ const MovieView = ({ id, setSubGenres }) => {
     </div>
   );
 
+};
+
+MovieView.propTypes = {
+  id: PropTypes.number.isRequired,
+  setSubGenres: PropTypes.func.isRequired
 };
 
 export default  MovieView;
