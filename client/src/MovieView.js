@@ -55,7 +55,7 @@ const MovieView = ({ id, setSubGenres }) => {
   }
   return (
     <div>
-      <Link to='/'>Home</Link>
+      <Link onClick={() => setSubGenres(['All'])} to='/'>Home</Link>
       <h3>{title}</h3>
       <div>{release_date}</div>
       <img
