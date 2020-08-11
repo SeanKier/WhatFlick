@@ -48,10 +48,7 @@ const MovieView = ({ id, setSubGenres }) => {
     return <div>... Loading ...</div>
   }
 
-  let youtube = <Youtube currentVideoID={currentVideoID} />
-  if (!currentVideoID) {
-    youtube === <div>loading</div>
-  }
+
   return (
     <div>
       <Link onClick={() => setSubGenres(['All'])} to='/'>Home</Link>
@@ -65,7 +62,9 @@ const MovieView = ({ id, setSubGenres }) => {
       <p>{overview}</p>
       <div>Popularity: {popularity}</div>
       <Reviews id={id} />
-      {youtube}
+      { currentVideoID && (
+        <Youtube currentVideoID={currentVideoID}/>
+      )}
       <Link to='/'>See More Movies Like{title}</Link>
 
     </div>
