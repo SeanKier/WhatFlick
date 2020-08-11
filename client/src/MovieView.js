@@ -19,7 +19,6 @@ const MovieView = ({ id, setSubGenres }) => {
       .then(response => {
         searchYouTube(response.title);
         updateMovie(response);
-        setSubGenres([response.genres[0].name]);
       })
       .catch(err => {
         console.log(err);
@@ -51,7 +50,12 @@ const MovieView = ({ id, setSubGenres }) => {
 
   return (
     <div>
-      <Link onClick={() => setSubGenres(['All'])} to='/'>Home</Link>
+      <Link
+        onClick={() => setSubGenres(['All'])}
+        to='/'
+      >
+        Home
+      </Link>
       <h3>{title}</h3>
       <div>{release_date}</div>
       <img
@@ -65,7 +69,12 @@ const MovieView = ({ id, setSubGenres }) => {
       { currentVideoID && (
         <Youtube currentVideoID={currentVideoID}/>
       )}
-      <Link to='/'>See More Movies Like{title}</Link>
+      <Link
+        onClick={() => setSubGenres([currentMovie.genres[0].name])}
+        to='/'
+      >
+        See More Movies Like{title}
+      </Link>
 
     </div>
   );
