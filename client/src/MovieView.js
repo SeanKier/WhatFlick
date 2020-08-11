@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 
 import Reviews from './Reviews';
 import Youtube from './Youtube';
-
-const keys = require('./APIKEY');
+import { api_key, youtubeAPIkey } from './APIKEY';
 
 const MovieView = ({ id, setSubGenres }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
 
   const getMovieData = (id) => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${keys.api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
       .then(response => {
         return response.json();
       })
@@ -26,7 +25,7 @@ const MovieView = ({ id, setSubGenres }) => {
   }
 
   const searchYouTube = (query) => {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=AIzaSyBzrdWIOJSQBjHOkG25qKt-8cfUbeK3Zws`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=${youtubeAPIkey}`)
       .then(response => {
         return response.json();
       })
