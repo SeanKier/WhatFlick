@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const StoryItem = ({ story }) => {
@@ -7,9 +8,13 @@ const StoryItem = ({ story }) => {
 
   return (
     <li>
-      <h4>
+
+
+          <Link
+        to='/news'
+      >
         {title}
-      </h4>
+      </Link>
       <img
         className="other-rounded"
         src={urlToImage}
