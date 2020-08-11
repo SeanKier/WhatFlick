@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Navbar from './Navigation';
 import Movies from './Movies';
 import Trending from './Trending';
+import News from './News';
 
 const keys = require('./APIKEY');
 
@@ -107,6 +108,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
       { movies.length > 0 && (
           <Trending movies={movies.slice(0, 4)}/>
       )}
+      <News />
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>
           Pick your favorite genre:
