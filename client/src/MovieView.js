@@ -44,7 +44,6 @@ const MovieView = ({ id, setSubGenres }) => {
   }, [])
 
   const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
-  console.log('currentMoview>>', currentMovie);
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
   }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Trending = ({ movies }) => {
   const [currentIndex, changeMovie] = useState(0);
@@ -23,9 +24,10 @@ const Trending = ({ movies }) => {
             Currently Trending
         </h3>
        { currentIndex > 0 && (
-           <button onClick={handleLeftClick}>
-                Left
-            </button>
+            <FontAwesomeIcon
+              icon={faArrowAltCircleLeft}
+              onClick={handleLeftClick}
+            />
        )}
         <img
             className="other-rounded"
@@ -33,17 +35,18 @@ const Trending = ({ movies }) => {
             alt={`Backdrop for ${movies[currentIndex].title}`}
         />
         { currentIndex < 3 && (
-            <button onClick={handleRightClick}>
-                Right
-            </button>
+            <FontAwesomeIcon
+              icon={faArrowAltCircleRight}
+              onClick={handleRightClick}
+            />
         )}
-        <div class="whats-next">
+        <div className="whats-next">
           <h4>
             Coming up Next
           </h4>
           <ul className={"trending-list"}>
             {whatsNext.map((movie, i) => (
-              <li>
+              <li key={i}>
                 <div
                   className="trending-item"
                   onClick={() => changeMovie(i + 1)}
@@ -59,7 +62,7 @@ const Trending = ({ movies }) => {
   );
 };
 
-Movies.propTypes = {
+Trending.propTypes = {
   movies: PropTypes.array.isRequired
 };
 
