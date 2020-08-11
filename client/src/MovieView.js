@@ -59,7 +59,7 @@ const MovieView = ({ id, setSubGenres }) => {
       <h3>{title}</h3>
       <div>{release_date}</div>
       <img
-        className="avatar rounded"
+        className="other-rounded"
         src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
         alt={`Backdrop for ${title}`}
       />
