@@ -6,8 +6,7 @@ import Navbar from './Navigation';
 import Movies from './Movies';
 import Trending from './Trending';
 import News from './News';
-
-const keys = require('./APIKEY');
+import { api_key } from './APIKEY';
 
 const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
@@ -66,7 +65,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
     }
 
 
-    let queryString = `https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${keys.api_key}&language=en-US&page=${page}`;
+    let queryString = `https://api.themoviedb.org/3/movie/${options[genre]}?api_key=${api_key}&language=en-US&page=${page}`;
     if (subGenres[0] !== 'All') {
       queryString += `&with_genres=${subGenreMap[subGenres[0]]}`
     }

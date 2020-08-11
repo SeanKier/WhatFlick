@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import { newsApi_key } from './APIKEY';
 
 const StoryItem = ({ story }) => {
 
-  const { title, urlToImage, description } = story;
+  const { title, url, urlToImage, description } = story;
 
   return (
     <li>
-
-
-          <Link
-        to='/news'
+      <a
+        style={{display: "table-cell"}}
+        href={url}
+        target="_blank"
       >
-        {title}
-      </Link>
+        <h1>
+          {title}
+        </h1>
+      </a>
       <img
         className="other-rounded"
         src={urlToImage}
         alt={`Backdrop for ${title}`}
       />
-        <p>
+      <p>
         {description}
       </p>
     </li>
@@ -43,7 +46,7 @@ const News = () => {
   }, []);
 
   const getNews = () => {
-    fetch('v2/everything?q=new netflix&sortBy=relevancy&apiKey=b3b7eadbaf734646a234c44b765d31f3')
+    fetch(`v2/everything?q=new netflix&sortBy=relevancy&apiKey=${newsApi_key}`)
       .then(response => {
         return response.json();
       })
