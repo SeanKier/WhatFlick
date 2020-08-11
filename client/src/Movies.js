@@ -59,17 +59,14 @@ CurrentMovie.propTypes = {
   })
 };
 
-const Movies = ({ currentMovies, updateID }) => {
+const Movies = ({ currentMovies, updateID }) => (
 
-  return (
-    <div id="movies-container">
-      {currentMovies.map((movie, i) => (
-        <CurrentMovie key={i} currentMovie={movie} updateID={updateID}/>
-      ))}
-    </div>
-  );
-
-};
+  <div id="movies-container">
+    {currentMovies.map((movie, i) => (
+      <CurrentMovie key={i} currentMovie={movie} updateID={updateID}/>
+    ))}
+  </div>
+);
 
 Movies.propTypes = {
   currentMovies: PropTypes.array.isRequired

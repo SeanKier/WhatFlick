@@ -76,3 +76,7 @@ ul {
 .rounded {
   border-radius: 5px;
 }
+
+.slide-container {
+  max-width: 450px;
+}

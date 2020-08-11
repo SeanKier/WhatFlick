@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Navbar from './Navigation';
 import Movies from './Movies';
+import Trending from './Trending';
 
 const keys = require('./APIKEY');
 
@@ -122,7 +123,12 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
             <option value="Romance">Romance</option>
           </select>
         </label>
-      <Movies currentMovies={movies} updateID={updateID}/>
+
+      { movies.length > 0 && (
+          <Trending movies={movies.slice(0, 4)}/>
+      )}
+
+      <Movies currentMovies={movies.slice(4)} updateID={updateID}/>
       <button
         onClick={handleNextPage}
       >
