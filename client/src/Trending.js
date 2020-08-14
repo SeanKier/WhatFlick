@@ -39,7 +39,7 @@ const Trending = ({ movies }) => {
         </h3>
 
 
-         <div className={"cards-slider parent"}>
+         <div className={`cards-slider active-slide-${currentIndex}`}>
            <div className="cards-slider-wrapper" style={{
                   'transform': `translateX(-${currentIndex*(100/movies.length)}%)`
                 }}>
