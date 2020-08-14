@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
-const Trending = ({ movies }) => {
+const Trending = ({ movies, updateID }) => {
   const [currentIndex, changeMovie] = useState(0);
 
   const handleRightClick = () => {
-    console.log('index>>>>>dgdgdg', currentIndex)
       if (currentIndex < 3) {
         changeMovie(currentIndex + 1);
       }
@@ -60,14 +60,18 @@ const Trending = ({ movies }) => {
                     <div
                       className="trending-carosouel-item"
                     >
-                      <h2>
-                        {movie.title}
-                      </h2>
-                      <img
-                          className="other-rounded"
-                          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                          alt={`Backdrop for ${movie.title}`}
-                      />
+                      <Link onClick={() => updateID(movie.id)} to='/other'>
+                        <h2>
+                          {movie.title}
+                        </h2>
+                      </Link>
+                      <Link onClick={() => updateID(movie.id)} to='/other'>
+                        <img
+                            className="other-rounded"
+                            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                            alt={`Backdrop for ${movie.title}`}
+                        />
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -82,14 +86,30 @@ const Trending = ({ movies }) => {
           </h4>
           <ul className={"trending-list"}>
             {whatsNext.map((movie, i) => (
-              <li key={i}>
-                <div
-                  className="trending-item"
-                  onClick={() => changeMovie(i + 1)}
+              <div className="trending-item-container">
+                <li key={i}
+                className="trending-item"
                 >
-                  {movie.title}
-                </div>
-              </li>
+                  <div
+                    onClick={() => changeMovie(i + 1)}
+                  >
+                    <div className="trending-item-title">
+                    <Link onClick={() => updateID(movie.id)} to='/other'>
+                      <h1>
+                        {movie.title}
+                      </h1>
+                    </Link>
+                    </div>
+                    <Link onClick={() => updateID(movie.id)} to='/other'>
+                      <img
+                          className="trending-item-img"
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                          alt={`Backdrop for ${movie.title}`}
+                      />
+                    </Link>
+                  </div>
+                </li>
+              </div>
             ))}
           </ul>
         </div>
@@ -101,7 +121,8 @@ const Trending = ({ movies }) => {
 };
 
 Trending.propTypes = {
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.array.isRequired,
+  updateMovie: PropTypes.func.isRequired
 };
 
 export default Trending;

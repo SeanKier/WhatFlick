@@ -135,3 +135,31 @@ ul {
   position: absolute;
   transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
+.news {
+  margin-top: 250px;
+}
+
+.trending-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+}
+
+.trending-item {
+  display: flex;
+  /* flex: 1; */
+  justify-content: flex-start;
+}
+
+.trending-item-img {
+  height: 60px;
+  margin: 5px;
+}
+
+.whats-next {
+  margin-left: 1400px;
+  min-height: 281px;
+}
+

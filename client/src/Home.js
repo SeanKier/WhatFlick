@@ -105,9 +105,9 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
     <div className="wrapper">
       <h1 id="site-title" className="center">Watch Tonight</h1>
       { movies.length > 0 && (
-          <Trending movies={movies.slice(0, 4)}/>
+          <Trending movies={movies.slice(0, 4)} updateID={updateID} />
       )}
-      {/* <News /> */}
+      <News />
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>
           Pick your favorite genre:
@@ -128,7 +128,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
           </select>
         </label>
 
-      <Movies currentMovies={movies.slice(4)} updateID={updateID}/>
+      <Movies currentMovies={movies.slice(4)} updateID={updateID} />
       <button
         onClick={handleNextPage}
       >

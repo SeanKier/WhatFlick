@@ -12,22 +12,18 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
     description = overview.slice(0, 150) + '...';
   }
 
-  const updateMovie = (id) => {
-    updateID(id);
-  }
-
   return (
     <div
       id="single-movie-container"
       className="rounded"
     >
-      <Link onClick={() => updateMovie(id)} to='/other'>
+      <Link onClick={() => updateID(id)} to='/other'>
         <h1>
           {title}
         </h1>
       </Link>
 
-      <Link onClick={() => updateMovie(id)} to='/other'>
+      <Link onClick={() => updateID(id)} to='/other'>
         <img
               className="avatar rounded"
               src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -45,7 +41,7 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
         {description}
       </p>
 
-      <Link onClick={() => updateMovie(id)} to='/other'>MoreInfo</Link>
+      <Link onClick={() => updateID(id)} to='/other'>MoreInfo</Link>
 
     </div>
   );
