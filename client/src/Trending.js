@@ -53,7 +53,8 @@ const Trending = ({ movies }) => {
 
             {movies.map((movie, i) => (
                   <div
-                    className='card'
+                    id={`card-${i}`}
+                    className="card"
                     key={i}
                   >
                     <div
