@@ -7,9 +7,11 @@ const Trending = ({ movies }) => {
   const [currentIndex, changeMovie] = useState(0);
 
   const handleRightClick = () => {
+    console.log('index>>>>>dgdgdg', currentIndex)
       if (currentIndex < 3) {
         changeMovie(currentIndex + 1);
       }
+
   }
   const handleLeftClick = () => {
     if (currentIndex > 0) {
@@ -20,26 +22,60 @@ const Trending = ({ movies }) => {
 
   return (
     <div className="trending-carousel">
-        <h3>
-            Currently Trending
-        </h3>
-       { currentIndex > 0 && (
+      { currentIndex > 0 && (
             <FontAwesomeIcon
               icon={faArrowAltCircleLeft}
               onClick={handleLeftClick}
             />
        )}
-        <img
-            className="other-rounded"
-            src={`https://image.tmdb.org/t/p/w500/${movies[currentIndex].backdrop_path}`}
-            alt={`Backdrop for ${movies[currentIndex].title}`}
-        />
         { currentIndex < 3 && (
             <FontAwesomeIcon
               icon={faArrowAltCircleRight}
               onClick={handleRightClick}
             />
         )}
+        <h3>
+            Currently Trending
+        </h3>
+
+
+         <div className={`cards-slider active-slide-${currentIndex}`}>
+           <div className="cards-slider-wrapper" style={{
+                  'transform': `translateX(-${currentIndex*(100/movies.length)}%)`
+                }}>
+             {/* <div className="card">
+                <img
+                    className="other-rounded card"
+                    src={`https://image.tmdb.org/t/p/w500/${movies[currentIndex].backdrop_path}`}
+                    alt={`Backdrop for ${movies[currentIndex].title}`}
+                />
+              </div> */}
+
+            {movies.map((movie, i) => (
+                  <div
+                    id={`card-${i}`}
+                    className="card"
+                    key={i}
+                  >
+                    <div
+                      className="trending-carosouel-item"
+                    >
+                      <h2>
+                        {movie.title}
+                      </h2>
+                      <img
+                          className="other-rounded"
+                          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                          alt={`Backdrop for ${movie.title}`}
+                      />
+                    </div>
+                  </div>
+                ))}
+
+           </div>
+         </div>
+
+
         <div className="whats-next">
           <h4>
             Coming up Next
@@ -57,7 +93,9 @@ const Trending = ({ movies }) => {
             ))}
           </ul>
         </div>
+
     </div>
+
 
   );
 };

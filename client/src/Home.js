@@ -107,7 +107,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
       { movies.length > 0 && (
           <Trending movies={movies.slice(0, 4)}/>
       )}
-      <News />
+      {/* <News /> */}
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>
           Pick your favorite genre:
