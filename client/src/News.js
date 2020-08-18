@@ -3,29 +3,37 @@ import PropTypes from 'prop-types';
 
 import { newsApi_key } from './APIKEY';
 
-const StoryItem = ({ story }) => {
+const StoryItem = ({ story, index }) => {
 
   const { title, url, urlToImage, description } = story;
 
   return (
-    <li>
+    <li
+      className="news-item"
+      id={`news-item-${index}`}
+    >
       <a
         style={{display: "table-cell"}}
         href={url}
         target="_blank"
       >
-        <h1>
+        <p>
           {title}
-        </h1>
+        </p>
       </a>
-      <img
-        className="other-rounded"
-        src={urlToImage}
-        alt={`Backdrop for ${title}`}
-      />
-      <p>
-        {description}
-      </p>
+      { index === 0 && (
+        <div>
+          <img
+            className="news-img"
+            src={urlToImage}
+            alt={`Backdrop for ${title}`}
+          />
+          <p>
+            {description}
+          </p>
+        </div>
+      )}
+
     </li>
   );
 };
@@ -67,9 +75,9 @@ const News = () => {
         News
       </h3>
         <div>
-          <ul>
+          <ul className="news-container">
             {netflixNews.map((story, i) => (
-              <StoryItem key={i} story={story} />
+              <StoryItem key={i} index={i} story={story} />
             ))}
           </ul>
         </div>

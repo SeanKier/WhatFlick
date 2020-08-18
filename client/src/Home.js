@@ -104,9 +104,9 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
   return (
     <div className="wrapper">
       <h1 id="site-title" className="center">Watch Tonight</h1>
-      { movies.length > 0 && (
+      {/* { movies.length > 0 && (
           <Trending movies={movies.slice(0, 4)} updateID={updateID} />
-      )}
+      )} */}
       <News />
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>

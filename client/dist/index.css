@@ -163,3 +163,24 @@ ul {
   min-height: 281px;
 }
 
+#news-item-0 {
+  width: 290px;
+  max-width: 290px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.news-item {
+  width: 90px;
+  max-width: 90px;
+}
+
+.news-item img{
+  height: 100%;
+  width: 100%;
+}
+
+.news-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+}
