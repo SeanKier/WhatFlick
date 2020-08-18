@@ -26,14 +26,14 @@
   color: inherit;
 }
 
-ul {
+.navbar {
   list-style-type: none;
   padding: 0;
   display: flex;
   justify-content: center;
  }
 
- li :hover {
+ .navbar-item :hover {
   background-color: #111111;
   color: white;
 }
@@ -169,6 +169,10 @@ ul {
   grid-column-start: 1;
   grid-column-end: 4;
 }
+.news {
+  width: 300px;
+  max-width: 300px;
+}
 
 .news-item {
   width: 90px;
@@ -183,4 +187,5 @@ ul {
 .news-container {
   display: grid;
   grid-template-columns: 100px 100px 100px;
+  list-style-type: none;
 }

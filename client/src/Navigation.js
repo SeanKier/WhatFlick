@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 const NavBar = ({ options, currentGenre, changeGenre }) => (
-    <ul>
+    <ul className="navbar">
       {options.map((genre) => (
-        <li key={genre}>
+        <li
+          key={genre}
+          className="navbar-item"
+        >
           <button
             className={classnames(
               'btn-clear nav-link',

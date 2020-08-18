@@ -71,7 +71,7 @@ const News = () => {
 
   return (
     <div className="news">
-      <h3>
+      <h3 className="news-title">
         News
       </h3>
         <div>
