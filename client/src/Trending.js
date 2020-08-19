@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) => (
-  <div className="carousel">
+const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) => {
+  const handleClickUpdateID = () => {
+    updateID(movie.id);
+  }
+  return (
+    <div className="carousel">
       { currentIndex > 0 && (
             <FontAwesomeIcon
               icon={faArrowAltCircleLeft}
@@ -31,12 +35,18 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
                     <div
                       className="trending-carosouel-item"
                     >
-                      <Link onClick={() => updateID(movie.id)} to='/other'>
+                      <Link
+                        onClick={handleClickUpdateID}
+                        to='/other'
+                      >
                         <h2>
                           {movie.title}
                         </h2>
                       </Link>
-                      <Link onClick={() => updateID(movie.id)} to='/other'>
+                      <Link
+                        onClick={handleClickUpdateID}
+                        to='/other'
+                      >
                         <img
                             className="other-rounded"
                             src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
@@ -49,8 +59,10 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
 
            </div>
          </div>
-  </div>
-);
+    </div>
+  );
+
+};
 
 Carosouel.propTypes = {
   movies: PropTypes.array.isRequired,
@@ -59,41 +71,46 @@ Carosouel.propTypes = {
   currentIndex: PropTypes.number.isRequired
 };
 
-const ComingNext = ({ whatsNext }) => (
-  <div className="whats-next">
-    <h4>
-      Coming up Next
-    </h4>
-    <ul className={"trending-list"}>
-      {whatsNext.map((movie, i) => (
-        <div className="trending-item-container">
-          <li key={i}
-          className="trending-item"
+const ComingNext = ({ whatsNext }) => {
+  return (
+    <div className="whats-next">
+      <h4>
+        Coming up Next
+      </h4>
+      <ul className={"trending-list"}>
+        {whatsNext.map((movie, i) => (
+          <div
+            className="trending-item-container"
+            key={i}
           >
-            <div
-              onClick={() => changeMovie(i + 1)}
+            <li
+            className="trending-item"
             >
-              <div className="trending-item-title">
-              <Link onClick={() => updateID(movie.id)} to='/other'>
-                <h1>
-                  {movie.title}
-                </h1>
-              </Link>
+              <div
+                onClick={() => changeMovie(i + 1)}
+              >
+                <div className="trending-item-title">
+                <Link onClick={() => updateID(movie.id)} to='/other'>
+                  <h1>
+                    {movie.title}
+                  </h1>
+                </Link>
+                </div>
+                <Link onClick={() => updateID(movie.id)} to='/other'>
+                  <img
+                      className="trending-item-img"
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt={`Backdrop for ${movie.title}`}
+                  />
+                </Link>
               </div>
-              <Link onClick={() => updateID(movie.id)} to='/other'>
-                <img
-                    className="trending-item-img"
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={`Backdrop for ${movie.title}`}
-                />
-              </Link>
-            </div>
-          </li>
-        </div>
-      ))}
-    </ul>
-  </div>
-);
+            </li>
+          </div>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 ComingNext.propTypes = {
   whatsNext: PropTypes.array.isRequired
@@ -129,7 +146,7 @@ const Trending = ({ movies, updateID }) => {
 
 Trending.propTypes = {
   movies: PropTypes.array.isRequired,
-  updateMovie: PropTypes.func.isRequired
+  updateID: PropTypes.func.isRequired
 };
 
 export default Trending;

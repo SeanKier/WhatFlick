@@ -11,6 +11,9 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
   if (overview.length > 150) {
     description = overview.slice(0, 150) + '...';
   }
+  const handleClick = () => {
+    updateID(id);
+  }
 
   return (
     <div
@@ -19,14 +22,18 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
     >
       <Link
         className="link"
-        onClick={() => updateID(id)} to='/other'
+        onClick={handleClick}
+        to='/other'
       >
         <h1>
           {title}
         </h1>
       </Link>
 
-      <Link onClick={() => updateID(id)} to='/other'>
+      <Link
+        onClick={handleClick}
+        to='/other'
+      >
         <img
               className="avatar rounded"
               src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -46,7 +53,8 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
 
       <Link
         className="link"
-        onClick={() => updateID(id)} to='/other'
+        onClick={handleClick}
+        to='/other'
       >
         MoreInfo
       </Link>
