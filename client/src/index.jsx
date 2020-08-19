@@ -11,7 +11,13 @@ const App = () => {
 
   return(
     <Router>
-      <div>
+      <div className="wrapper">
+        <Link
+          className="center"
+          to='/'
+        >
+          <h1 id="site-title" >Watch Tonight</h1>
+        </Link>
         <Route
             exact path="/"
             render={(props) => <Home {...props} updateID={updateMovieID} subGenres={subGenres} setSubGenres={setSubGenres} />}

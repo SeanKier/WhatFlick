@@ -17,7 +17,10 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
       id="single-movie-container"
       className="rounded"
     >
-      <Link onClick={() => updateID(id)} to='/other'>
+      <Link
+        className="link"
+        onClick={() => updateID(id)} to='/other'
+      >
         <h1>
           {title}
         </h1>
@@ -41,7 +44,12 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
         {description}
       </p>
 
-      <Link onClick={() => updateID(id)} to='/other'>MoreInfo</Link>
+      <Link
+        className="link"
+        onClick={() => updateID(id)} to='/other'
+      >
+        MoreInfo
+      </Link>
 
     </div>
   );
