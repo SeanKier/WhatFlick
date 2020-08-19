@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { api_key } from './APIKEY';
 
 const CurrentReview = ({ review }) => {
+  const { author, content } = review;
+
   return (
-    <div id='single-review'>
-      <h4>{review.author}</h4>
-      <p>{review.content}</p>
+    <div className="single-review">
+      <h4>{author}</h4>
+      <p>{content}</p>
     </div>
   );
 }

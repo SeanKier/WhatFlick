@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Youtube = ({ currentVideoID }) => (
   <div>
-    <iframe className="movie-img-item" src={`https://www.youtube.com/embed/${currentVideoID}`} allowFullScreen></iframe>
+    <iframe className="movie-img-movie" src={`https://www.youtube.com/embed/${currentVideoID}?autoplay=1`} allowFullScreen></iframe>
   </div>
 );
 

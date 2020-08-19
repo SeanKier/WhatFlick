@@ -266,3 +266,29 @@ body {
   margin-bottom: 10px;
   border-bottom: 1px solid black;
 }
+.img-overlay-container {
+  position: relative;
+}
+
+.playbutton {
+  color: white;
+  font-size: 90px;
+  float: left;
+  position: absolute;
+  left: 8%;
+  top: 60%;
+  z-index: 1000;
+}
+.playbutton:hover {
+  cursor: pointer;
+}
+
+.movie-img-movie{
+  width: 498px;
+  min-width: 498px;
+}
+
+.single-review {
+  border-bottom: 1px solid black;
+}
+
