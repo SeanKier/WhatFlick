@@ -47,9 +47,17 @@ const Reviews = ({ id }) => {
   }
   return (
     <div id='reviews'>
-      {currentReviews.map((review, i) => (
-        <CurrentReview key={i} review={review} />
-      ))}
+      {currentReviews.length > 0 && (
+        <div>
+          <div className="review-title">
+            Reviews
+          </div>
+          {currentReviews.map((review, i) => (
+            <CurrentReview key={i} review={review} />
+          ))}
+        </div>
+      )}
+
     </div>
   );
 

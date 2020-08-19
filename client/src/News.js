@@ -13,6 +13,7 @@ const StoryItem = ({ story, index }) => {
       id={`news-item-${index}`}
     >
       <a
+        className="link"
         style={{display: "table-cell"}}
         href={url}
         target="_blank"

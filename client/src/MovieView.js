@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import StarRatings from 'react-star-ratings';
 
 import Reviews from './Reviews';
 import Youtube from './Youtube';
@@ -41,40 +43,87 @@ const MovieView = ({ id, setSubGenres }) => {
     getMovieData(id);
   }, [])
 
-  const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date } = currentMovie;
+  const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date, tagline, runtime, genres } = currentMovie;
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
+  }
+  let genresList = '';
+  if (genres !== undefined) {
+    genres.forEach((currentGenre, i) => {
+      if (i !== genres.length - 1) {
+        genresList += `${currentGenre.name}, `;
+      } else {
+        genresList += currentGenre.name;
+      }
+    })
   }
 
 
   return (
-    <div>
-      <Link
-        onClick={() => setSubGenres(['All'])}
-        to='/'
-      >
-        Home
-      </Link>
-      <h3>{title}</h3>
-      <div>{release_date}</div>
-      <img
-        className="other-rounded"
-        src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-        alt={`Backdrop for ${title}`}
-      />
-      <p>{overview}</p>
-      <div>Popularity: {popularity}</div>
-      <Reviews id={id} />
-      { currentVideoID && (
-        <Youtube currentVideoID={currentVideoID}/>
-      )}
-      <Link
-        onClick={() => setSubGenres([currentMovie.genres[0].name])}
-        to='/'
-      >
-        See More Movies Like{title}
-      </Link>
+    <div className="movie-view-wrapper">
+      <div className="movie-view">
+        <div className="info-container">
+          <div className="movie-title">{title}</div>
+          <div className="ratings-container">
+            <div className="popularity">
+              <div>Popularity: {popularity}</div>
+              <StarRatings
+                rating={5}
+                starRatedColor="rgb(76, 160, 175)"
+                starDimension="20px"
+                numberOfStars={10}
+                starSpacing="1px"
+                name='rating'
+              />
+            </div>
+            <div className="premiere-date">
+              <div>
+                Premiere:
+              </div>
+              <div>
+                {moment(Date.parse(release_date)).format("MMMM YYYY")}
+              </div>
+            </div>
+            <div className="runtime">
+              <div>
+                Runtime:
+              </div>
+              <div>
+                {runtime}
+              </div>
+            </div>
+            <div className="genres">
+              <div>{""}</div>
+              {genresList}
+            </div>
+          </div>
+          { tagline !== '' && (
+            <div className="tagline">
+              {tagline}
+            </div>
+          )}
+        </div>
+          <div className="movie-img-container">
+            <img
+              className="movie-img-item"
+              src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+              alt={`Backdrop for ${title}`}
+            />
+            { currentVideoID && (
+              <Youtube currentVideoID={currentVideoID}/>
+            )}
+          </div>
 
+        <p>{overview}</p>
+        <Reviews id={id} />
+
+        <Link
+          onClick={() => setSubGenres([currentMovie.genres[0].name])}
+          to='/'
+        >
+          See More Movies Like{title}
+        </Link>
+      </div>
     </div>
   );
 

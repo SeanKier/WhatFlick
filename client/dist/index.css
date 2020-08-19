@@ -1,4 +1,9 @@
 @import url(//db.onlinewebfonts.com/c/ab83b275830b2d585ea027c47e3b237a?family=GraphiqueW01-Regular);
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 #site-title {
   font-family: "GraphiqueW01-Regular";
@@ -12,6 +17,8 @@
 
 .center {
   display: inline-block;
+  text-decoration: none;
+  color: black;
 }
 
 .btn-clear {
@@ -186,4 +193,76 @@
   display: grid;
   grid-template-columns: 100px 100px 100px;
   list-style-type: none;
+}
+
+.movie-img-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.movie-img-item {
+  height: 280px;
+  min-height: 280px;
+}
+
+.movie-view {
+  max-width: 45vw;
+  display: inline-block;
+  text-align: left;
+  min-width: 800px;
+}
+
+.movie-view-wrapper {
+  text-align: center;
+  /* min-width: 800px; */
+}
+
+.ratings-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.premiere-date {
+  margin-left: 25px;
+  padding-right: 25px;
+  border-right: 1px solid black;
+}
+
+.popularity {
+  padding-right: 25px;
+  margin-left: 10px;
+  border-right: 1px solid black;
+}
+.runtime {
+  margin-left: 25px;
+  padding-right: 25px;
+  border-right: 1px solid black;
+}
+.genres {
+  margin-left: 25px;
+}
+.link {
+  text-decoration: none;
+  color: rgb(20, 79, 134);
+}
+
+.info-container{
+  background-color: rgb(233, 233, 233);
+}
+.movie-title {
+  font-size: 40px;
+  margin: 10px;
+}
+
+.tagline {
+  margin-left: 10px;
+  margin-top: 5px;
+  padding-bottom: 10px;
+}
+
+.review-title {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
 }

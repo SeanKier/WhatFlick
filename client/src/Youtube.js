@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const Youtube = ({ currentVideoID }) => (
   <div>
-    <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${currentVideoID}`} allowFullScreen></iframe>
+    <iframe className="movie-img-item" src={`https://www.youtube.com/embed/${currentVideoID}`} allowFullScreen></iframe>
   </div>
 );
 
 Youtube.propTypes = {
-  currentVideoID: PropTypes.string.isRequired,
+  currentVideoID: PropTypes.string.isRequired
 };
 
 export default Youtube;
