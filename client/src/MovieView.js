@@ -97,11 +97,9 @@ const MovieView = ({ id, setSubGenres }) => {
               {genresList}
             </div>
           </div>
-          { tagline !== '' && (
-            <div className="tagline">
-              {tagline}
-            </div>
-          )}
+          <div className="tagline">
+            {tagline}
+          </div>
         </div>
           <div className="movie-img-container">
             <img
