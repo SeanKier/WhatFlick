@@ -285,6 +285,8 @@ body {
 
 .movie-img-movie{
   width: 498px;
+  height: 280px;
+  min-height: 280px;
   min-width: 498px;
 }
 

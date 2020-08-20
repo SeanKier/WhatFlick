@@ -71,50 +71,6 @@ Carosouel.propTypes = {
   currentIndex: PropTypes.number.isRequired
 };
 
-const ComingNext = ({ whatsNext }) => {
-  return (
-    <div className="whats-next">
-      <h4>
-        Coming up Next
-      </h4>
-      <ul className={"trending-list"}>
-        {whatsNext.map((movie, i) => (
-          <div
-            className="trending-item-container"
-            key={i}
-          >
-            <li
-            className="trending-item"
-            >
-              <div
-                onClick={() => changeMovie(i + 1)}
-              >
-                <div className="trending-item-title">
-                <Link onClick={() => updateID(movie.id)} to='/other'>
-                  <h1>
-                    {movie.title}
-                  </h1>
-                </Link>
-                </div>
-                <Link onClick={() => updateID(movie.id)} to='/other'>
-                  <img
-                      className="trending-item-img"
-                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      alt={`Backdrop for ${movie.title}`}
-                  />
-                </Link>
-              </div>
-            </li>
-          </div>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-ComingNext.propTypes = {
-  whatsNext: PropTypes.array.isRequired
-};
 
 const Trending = ({ movies, updateID }) => {
   const [currentIndex, changeMovie] = useState(0);
@@ -130,7 +86,6 @@ const Trending = ({ movies, updateID }) => {
       changeMovie(currentIndex - 1);
     }
   }
-  const whatsNext = movies.slice(currentIndex + 1);
 
   return (
     <div className="trending-carousel">
@@ -138,7 +93,6 @@ const Trending = ({ movies, updateID }) => {
         Currently Trending
       </h2>
       <Carosouel movies={movies} handleLeftClick={handleLeftClick} handleRightClick={handleRightClick} currentIndex={currentIndex} />
-      <ComingNext whatsNext={whatsNext} />
     </div>
 
   );

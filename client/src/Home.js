@@ -103,10 +103,10 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
 
   return (
     <div className="wrapper">
-{/*
+
       { movies.length > 0 && (
           <Trending movies={movies.slice(0, 4)} updateID={updateID} />
-      )} */}
+      )}
       <News />
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
       <label>
