@@ -35,13 +35,17 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
                     <div
                       className="trending-carosouel-item"
                     >
+                      <div className="trending-title">
+                        Currently Trending
+                      </div>
                       <Link
+                        className="link"
                         onClick={handleClickUpdateID}
                         to='/other'
                       >
-                        <h2>
+                        <h3>
                           {movie.title}
-                        </h2>
+                        </h3>
                       </Link>
                       <Link
                         onClick={handleClickUpdateID}
@@ -89,9 +93,7 @@ const Trending = ({ movies, updateID }) => {
 
   return (
     <div className="trending-carousel">
-      <h2 className="title">
-        Currently Trending
-      </h2>
+
       <Carosouel movies={movies} handleLeftClick={handleLeftClick} handleRightClick={handleRightClick} currentIndex={currentIndex} />
     </div>
 

@@ -18,7 +18,7 @@ const StoryItem = ({ story, index }) => {
         href={url}
         target="_blank"
       >
-        <p>
+        <p className="link">
           {title}
         </p>
       </a>

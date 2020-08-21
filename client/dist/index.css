@@ -145,6 +145,7 @@ body {
 .news {
   /* width: 300px;
   max-width: 300px; */
+  margin-left: 200px;
 }
 
 .trending-list {
@@ -295,9 +296,26 @@ body {
 }
 
 .wontwork {
+  width: 50%;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   width: 1000px;
   max-width: 1000px;
+}
+
+.trending-carousel {
+  margin-right: 300px;
+}
+
+.trending-title {
+  text-align: center;
+}
+/* .carousel {
+  width: 500px;
+  min-width: 500px;
+} */
+.trending-title {
+  /* margin-left: 200px; */
 }
