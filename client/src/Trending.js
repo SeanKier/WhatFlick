@@ -1,31 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) => {
-  const handleClickUpdateID = () => {
-    updateID(movie.id);
-  }
+const Trending = ({ movies, updateID, currentIndex,changeMovie }) => {
+
+
   return (
-    <div className="carousel">
-      { currentIndex > 0 && (
-            <FontAwesomeIcon
-              icon={faArrowAltCircleLeft}
-              onClick={handleLeftClick}
-            />
-       )}
-        { currentIndex < 3 && (
-            <FontAwesomeIcon
-              icon={faArrowAltCircleRight}
-              onClick={handleRightClick}
-            />
-        )}
+    <div className="trending-carousel">
          <div className={`cards-slider active-slide-${currentIndex}`}>
            <div className="cards-slider-wrapper" style={{
                   'transform': `translateX(-${currentIndex*(100/movies.length)}%)`
                 }}>
+
             {movies.map((movie, i) => (
                   <div
                     id={`card-${i}`}
@@ -38,9 +24,9 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
                       <div className="trending-title">
                         Currently Trending
                       </div>
-                      <Link
+                                      <Link
                         className="link"
-                        onClick={handleClickUpdateID}
+                        // onClick={handleClickUpdateID}
                         to='/other'
                       >
                         <h3>
@@ -48,7 +34,7 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
                         </h3>
                       </Link>
                       <Link
-                        onClick={handleClickUpdateID}
+                        // onClick={handleClickUpdateID}
                         to='/other'
                       >
                         <img
@@ -63,38 +49,6 @@ const Carosouel = ({ movies, handleLeftClick, handleRightClick, currentIndex }) 
 
            </div>
          </div>
-    </div>
-  );
-
-};
-
-Carosouel.propTypes = {
-  movies: PropTypes.array.isRequired,
-  handleLeftClick: PropTypes.func.isRequired,
-  handleRightClick: PropTypes.func.isRequired,
-  currentIndex: PropTypes.number.isRequired
-};
-
-
-const Trending = ({ movies, updateID }) => {
-  const [currentIndex, changeMovie] = useState(0);
-
-  const handleRightClick = () => {
-      if (currentIndex < 3) {
-        changeMovie(currentIndex + 1);
-      }
-
-  }
-  const handleLeftClick = () => {
-    if (currentIndex > 0) {
-      changeMovie(currentIndex - 1);
-    }
-  }
-
-  return (
-    <div className="trending-carousel">
-
-      <Carosouel movies={movies} handleLeftClick={handleLeftClick} handleRightClick={handleRightClick} currentIndex={currentIndex} />
     </div>
 
   );

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import Navbar from './Navigation';
 import Movies from './Movies';
@@ -12,6 +14,19 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
+  const [currentIndex, changeMovie] = useState(0);
+
+  const handleRightClick = () => {
+      if (currentIndex < 3) {
+        changeMovie(currentIndex + 1);
+      }
+
+  }
+  const handleLeftClick = () => {
+    if (currentIndex > 0) {
+      changeMovie(currentIndex - 1);
+    }
+  }
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -104,9 +119,28 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
   return (
     <div className="wrapper">
       <div className="wontwork">
-        { movies.length > 0 && (
-            <Trending movies={movies.slice(0, 4)} updateID={updateID} />
+        <div>
+        { currentIndex > 0 && (
+            <div className="left-button">
+              <FontAwesomeIcon
+                icon={faArrowAltCircleLeft}
+                onClick={handleLeftClick}
+              />
+            </div>
         )}
+          { currentIndex < 3 && (
+            <div className="right-button">
+              <FontAwesomeIcon
+                icon={faArrowAltCircleRight}
+                onClick={handleRightClick}
+              />
+            </div>
+
+          )}
+        { movies.length > 0 && (
+            <Trending movies={movies.slice(0, 4)} updateID={updateID} currentIndex={currentIndex} changeMovie={changeMovie} />
+        )}
+        </div>
         <News />
       </div>
 

@@ -13,6 +13,7 @@ body {
 
 .wrapper {
   text-align: center;
+  min-width: 500px;
 }
 
 .center {
@@ -92,25 +93,25 @@ body {
 }
 
 .cards-slider.active-slide-0  #card-0{
-  display: flex;
-  flex: 1;
+  /* display: flex;
+  flex: 1; */
   opacity: 1;
 }
 
 .cards-slider.active-slide-1  #card-1{
-  display: flex;
-  flex: 1;
+  /* display: flex;
+  flex: 1; */
   opacity: 1;
 }
 
 .cards-slider.active-slide-2  #card-2{
-  display: flex;
-  flex: 1;
+  /* display: flex;
+  flex: 1; */
   opacity: 1;
 }
 .cards-slider.active-slide-3  #card-3{
-  display: flex;
-  flex: 1;
+  /* display: flex;
+  flex: 1; */
   opacity: 1;
 }
 
@@ -272,7 +273,6 @@ body {
 }
 
 .playbutton {
-  color: white;
   font-size: 90px;
   float: left;
   position: absolute;
@@ -302,6 +302,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   width: 1000px;
+  min-width: 500px;
   max-width: 1000px;
 }
 
@@ -319,3 +320,23 @@ body {
 .trending-title {
   /* margin-left: 200px; */
 }
+
+.right-button {
+  /* color: white; */
+  font-size: 45px;
+  float: left;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 1000;
+}
+.left-button {
+  /* color: white; */
+  font-size: 45px;
+  float: left;
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  z-index: 1000;
+}
+
