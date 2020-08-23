@@ -14,17 +14,30 @@ const App = () => {
       <div className="wrapper">
         <Link
           className="center"
-          to='/'
+          to="/"
         >
-          <h1 id="site-title" >Watch Tonight</h1>
+          <h1 id="site-title">Watch Tonight</h1>
         </Link>
         <Route
-            exact path="/"
-            render={(props) => <Home {...props} updateID={updateMovieID} subGenres={subGenres} setSubGenres={setSubGenres} />}
+          exact path="/"
+          render={(props) => (
+            <Home
+              {...props}
+              updateID={updateMovieID}
+              subGenres={subGenres}
+              setSubGenres={setSubGenres}
+            />
+          )}
         />
         <Route
-            path="/other"
-            render={(props) => <MovieView {...props} id={currentMovieID} setSubGenres={setSubGenres} />}
+          path="/other"
+          render={(props) => (
+            <MovieView
+              {...props}
+              id={currentMovieID}
+              setSubGenres={setSubGenres}
+            />
+          )}
         />
       </div>
     </Router>
@@ -33,5 +46,5 @@ const App = () => {
 
 ReactDOM.render(
   <App />,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
