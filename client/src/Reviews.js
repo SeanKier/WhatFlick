@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { api_key } from './APIKEY';
 
@@ -8,7 +10,18 @@ const CurrentReview = ({ review }) => {
 
   return (
     <div className="single-review">
-      <h4>{author}</h4>
+      <div className="user-info-container">
+        <div className="user-icon-container">
+          <FontAwesomeIcon
+            className="user-icon"
+            icon={faUserCircle}
+          />
+        </div>
+        <div className="review-author">
+          {author}
+        </div>
+      </div>
+
       <p>{content}</p>
     </div>
   );
@@ -52,7 +65,7 @@ const Reviews = ({ id }) => {
       {currentReviews.length > 0 && (
         <div>
           <div className="review-title">
-            Reviews
+            User Reviews
           </div>
           {currentReviews.map((review, i) => (
             <CurrentReview key={i} review={review} />

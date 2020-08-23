@@ -15,6 +15,25 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
     updateID(id);
   }
 
+  const titleStyle = {fontSize: 15};
+  let movieTitle = (
+    <div
+      className="movie-feed-title"
+    >
+      {title}
+    </div>
+  );
+  if (title.length >= 25) {
+    movieTitle = (
+      <div
+        className="movie-feed-title"
+        style={titleStyle}
+      >
+        {title}
+      </div>
+    );
+  }
+
   return (
     <div
       id="single-movie-container"
@@ -25,9 +44,7 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
         onClick={handleClick}
         to='/other'
       >
-        <h1>
-          {title}
-        </h1>
+        {movieTitle}
       </Link>
 
       <Link
@@ -35,17 +52,25 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
         to='/other'
       >
         <img
-              className="avatar rounded"
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-              alt={`Avatar for ${title}`}
+          className="avatar rounded"
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          alt={`Avatar for ${title}`}
         />
       </Link>
-      <div id="star">
-        <FaStar color='rgb(255, 215, 0)' size={22} />
+      <div
+        id="star"
+      >
+        <FaStar
+          color='rgb(255, 215, 0)'
+          size={22}
+        />
         <span className="vote">
           {vote_average}
         </span>
-        <FaStar color='rgb(255, 215, 0)' size={22} />
+        <FaStar
+          color='rgb(255, 215, 0)'
+          size={22}
+        />
       </div>
       <p className="description rounded">
         {description}

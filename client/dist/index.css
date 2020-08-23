@@ -13,6 +13,7 @@ body {
 
 .wrapper {
   text-align: center;
+  min-width: 500px;
 }
 
 .center {
@@ -40,7 +41,8 @@ body {
   justify-content: center;
  }
 
- .navbar-item :hover {
+.navbar-item :hover {
+  cursor: pointer;
   background-color: #111111;
   color: white;
 }
@@ -85,66 +87,66 @@ body {
 }
 
 .card {
-  display: flex;
-  flex: 1;
+  position: absolute;
+  display: block;
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 300ms linear, transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: opacity 500ms linear, transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .cards-slider.active-slide-0  #card-0{
-  display: flex;
-  flex: 1;
+  display: block;
+  visibility: visible;
   opacity: 1;
 }
 
 .cards-slider.active-slide-1  #card-1{
-  display: flex;
-  flex: 1;
+  display: block;
+  visibility: visible;
   opacity: 1;
 }
 
 .cards-slider.active-slide-2  #card-2{
-  display: flex;
-  flex: 1;
+  display: block;
+  visibility: visible;
   opacity: 1;
 }
 .cards-slider.active-slide-3  #card-3{
-  display: flex;
-  flex: 1;
+  display: block;
+  visibility: visible;
   opacity: 1;
 }
 
 .cards-slider {
   position: relative;
-  max-width: 226px;
+  max-width: 700px;
+  min-width: 500px;
+  min-height: 300px;
   margin: 0 auto;
 }
 .after {
-    position: relative;
-    max-width: 226px;
-    margin: 0 auto;
-    content: '';
-    display: block;
-    width: 100%;
-    height: 264px;
-    outline: 5px solid #61DAFB;
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: relative;
+  max-width: 226px;
+  margin: 0 auto;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 264px;
+  outline: 5px solid #61DAFB;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .cards-slider {
   position: relative;
   margin: 0 auto;
 }
 .cards-slider-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
   position: absolute;
   transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .news {
-  /* width: 300px;
-  max-width: 300px; */
+  margin-left: 10px;
 }
 
 .trending-list {
@@ -157,7 +159,6 @@ body {
 
 .trending-item {
   display: flex;
-  /* flex: 1; */
   justify-content: flex-start;
 }
 
@@ -177,7 +178,9 @@ body {
   grid-column-start: 1;
   grid-column-end: 4;
 }
-
+.selector {
+  margin-bottom: 5px;
+}
 
 .news-item {
   width: 90px;
@@ -194,15 +197,18 @@ body {
   grid-template-columns: 100px 100px 100px;
   list-style-type: none;
 }
-
+.movie-feed-title {
+  font-size: 25px;
+  margin: 13px;
+}
 .movie-img-container {
   display: flex;
   justify-content: flex-start;
 }
 
 .movie-img-item {
-  height: 280px;
-  min-height: 280px;
+  height: 350px;
+  min-height: 350px;
 }
 
 .movie-view {
@@ -214,7 +220,6 @@ body {
 
 .movie-view-wrapper {
   text-align: center;
-  /* min-width: 800px; */
 }
 
 .ratings-container {
@@ -268,10 +273,16 @@ body {
 }
 .img-overlay-container {
   position: relative;
+  min-width: 600px;
+}
+
+.img-overlay-container:hover {
+  cursor: pointer;
 }
 
 .playbutton {
   color: white;
+  opacity: 0.8;
   font-size: 90px;
   float: left;
   position: absolute;
@@ -279,15 +290,23 @@ body {
   top: 60%;
   z-index: 1000;
 }
+
 .playbutton:hover {
-  cursor: pointer;
+  opacity: 1;
 }
 
-.movie-img-movie{
-  width: 498px;
-  height: 280px;
-  min-height: 280px;
-  min-width: 498px;
+.movie-img-backdrop {
+  height: 350px;
+  min-height: 350px;
+  width: 567px;
+  max-width: 567px;
+}
+
+.movie-img-movie {
+  height: 348px;
+  min-height: 348px;
+  width: 564px;
+  max-width: 564px;
 }
 
 .single-review {
@@ -295,9 +314,70 @@ body {
 }
 
 .wontwork {
+  width: 50%;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  grid-template-columns: 500px 500px;
   width: 1000px;
+  min-width: 500px;
   max-width: 1000px;
 }
+
+.trending-carousel {
+  margin-right: 20px;
+}
+
+.trending-title {
+  text-align: center;
+}
+
+.right-button {
+  color: white;
+  opacity: 0.8;
+  font-size: 45px;
+  float: left;
+  position: absolute;
+  left: 90%;
+  top: 60%;
+  z-index: 1000;
+}
+
+.right-button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.left-button {
+  color: white;
+  opacity: 0.8;
+  font-size: 45px;
+  float: left;
+  position: absolute;
+  left: 1%;
+  top: 60%;
+  z-index: 1000;
+}
+
+.left-button:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.user-info-container {
+  display: flex;
+  justify-content: start;
+  margin-top: 10px;
+}
+
+.user-icon-container {
+  margin-right: 15px;
+}
+
+.user-icon {
+  font-size: 40px;
+}
+
+.review-author {
+  margin-top: 10px;
+}
+

@@ -12,6 +12,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
+  const [currentIndex, changeMovie] = useState(0);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -105,13 +106,13 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
     <div className="wrapper">
       <div className="wontwork">
         { movies.length > 0 && (
-            <Trending movies={movies.slice(0, 4)} updateID={updateID} />
+            <Trending movies={movies.slice(0, 4)} updateID={updateID} currentIndex={currentIndex} changeMovie={changeMovie} />
         )}
         <News />
       </div>
 
       <Navbar options={genres} currentGenre={genre} changeGenre={updateNewGenre} />
-      <label>
+      <label className="selector">
           Pick your favorite genre:
           <select value={subGenres[0]} onChange={handleChange}>
             <option value="All">All</option>
