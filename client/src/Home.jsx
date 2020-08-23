@@ -99,7 +99,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
 
   return (
     <div className="wrapper">
-      <div className="wontwork">
+      <div className="trending-and-news">
         { movies.length > 0 && (
           <Trending
             movies={movies.slice(0, 4)}

@@ -6,7 +6,13 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { api_key } from './APIKEY';
 
 const CurrentReview = ({ review }) => {
+  const [readMore, isReadMore] = useState(false);
   const { author, content } = review;
+  const slicedReviewContent = `${content.slice(0, 500)}...`;
+
+  const hanldeReadMoreClick = () => {
+    isReadMore(true);
+  };
 
   return (
     <div className="single-review">
@@ -21,8 +27,25 @@ const CurrentReview = ({ review }) => {
           {author}
         </div>
       </div>
+      { (!readMore && content.length >= 500) && (
+        <div>
+          <p>
+            {slicedReviewContent}
+            <span
+              className="read-more-link"
+              onClick={hanldeReadMoreClick}
+            >
+              Read More
+            </span>
+          </p>
 
-      <p>{content}</p>
+        </div>
+      )}
+      { (readMore || content.length < 500) && (
+        <div>
+          <p>{content}</p>
+        </div>
+      )}
     </div>
   );
 }
