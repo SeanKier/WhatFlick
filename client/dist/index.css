@@ -272,12 +272,6 @@ body {
   padding-bottom: 10px;
 }
 
-.review-title {
-  font-size: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid black;
-}
 .img-overlay-container {
   position: relative;
   min-width: 600px;
@@ -320,7 +314,41 @@ body {
   border-bottom: 1px solid black;
 }
 
-.wontwork {
+.review-title {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.user-info-container {
+  display: flex;
+  justify-content: start;
+  margin-top: 10px;
+}
+
+.user-icon-container {
+  margin-right: 15px;
+}
+
+.user-icon {
+  font-size: 40px;
+}
+
+.review-author {
+  margin-top: 10px;
+}
+
+.read-more-link {
+  color: rgb(56, 121, 133);
+  margin-left: 5px;
+}
+
+.read-more-link:hover {
+  cursor: pointer;
+}
+
+.trending-and-news {
   width: 50%;
   margin: 0 auto;
   display: flex;
@@ -369,22 +397,3 @@ body {
   cursor: pointer;
   opacity: 1;
 }
-
-.user-info-container {
-  display: flex;
-  justify-content: start;
-  margin-top: 10px;
-}
-
-.user-icon-container {
-  margin-right: 15px;
-}
-
-.user-icon {
-  font-size: 40px;
-}
-
-.review-author {
-  margin-top: 10px;
-}
-
