@@ -31,7 +31,7 @@ const StoryItem = ({ story, index }) => {
             src={urlToImage}
             alt={`Backdrop for ${title}`}
           />
-          <p>
+          <p className="news-description">
             {description}
           </p>
         </div>

@@ -153,6 +153,9 @@ body {
   min-height: 604px;
 }
 
+.news-description {
+  text-align: left;
+}
 .trending-list {
   display: flex;
   flex-direction: column;
