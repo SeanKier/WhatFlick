@@ -70,7 +70,6 @@ const MovieView = ({ id, setSubGenres }) => {
   };
 
   const handleClickSetNewSub = (event) => {
-    console.log(event.target.innerHTML);
     setSubGenres([event.target.innerHTML]);
   };
 
