@@ -9,7 +9,7 @@ const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
   const [subGenres, setSubGenres] = useState(['All']);
 
-  return(
+  return (
     <Router>
       <div className="wrapper">
         <Link
