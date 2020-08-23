@@ -78,7 +78,7 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
         {description}
       </p>
       <Link
-        className="link"
+        className="link more-info"
         onClick={handleClick}
         to="/other"
       >

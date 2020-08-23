@@ -84,7 +84,9 @@ const MovieView = ({ id, setSubGenres }) => {
     genreList = (
       <div>
         {genres.map((type, i) => {
-          let comma = comma = <span>, </span>;
+          let comma = comma = (
+            <span className={comma}>, </span>
+          );
           if (i === genres.length - 1) {
             comma = null;
           }
