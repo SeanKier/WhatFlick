@@ -16,16 +16,18 @@ const StaticImage = ({ backdrop_path, title, isNowPlaying }) => {
   }
 
   return (
-    <div className="img-overlay-container">
+    <div
+      className="img-overlay-container"
+      onClick={handleClickIsPlaying}
+    >
       <img
-        className="movie-img-item"
+        className="movie-img-backdrop"
         src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
         alt={`Backdrop for ${title}`}
       />
       <FontAwesomeIcon
         icon={faPlayCircle}
         className="playbutton"
-        onClick={handleClickIsPlaying}
       />
     </div>
   );
@@ -71,7 +73,7 @@ const MovieView = ({ id, setSubGenres }) => {
     setSubGenres([currentMovie.genres[0].name]);
   }
 
-  const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date, tagline, runtime, genres } = currentMovie;
+  const { imdb_id, title, popularity, overview, backdrop_path, poster_path, release_date, tagline, runtime, genres, vote_average } = currentMovie;
   if (currentMovie === {}) {
     return <div>... Loading ...</div>
   }
@@ -86,73 +88,96 @@ const MovieView = ({ id, setSubGenres }) => {
     })
   }
 
+  const readableRuntime = () => {
+    if (runtime < 60) {
+      return `${runtime} minutes`;
+    }
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime - (hours * 60);
+    let hourString = 'hours';
+    if (hours === 1) {
+      hourString = 'hour'
+    }
+    let minuteString = 'minutes';
+    if (minutes === 1) {
+      minuteString = 'minute';
+    }
+    if (minutes === 0) {
+      return `${hours} ${hourString}`;
+    }
+    return `${hours} ${hourString} and ${minutes} ${minuteString}`;
+  }
 
   return (
     <div className="movie-view-wrapper">
-      <div className="movie-view">
-        <div className="info-container">
-          <div className="movie-title">{title}</div>
-          <div className="ratings-container">
-            <div className="popularity">
-              <div>Popularity: {popularity}</div>
-              <StarRatings
-                rating={5}
-                starRatedColor="rgb(76, 160, 175)"
-                starDimension="20px"
-                numberOfStars={10}
-                starSpacing="1px"
-                name='rating'
-              />
-            </div>
-            <div className="premiere-date">
-              <div>
-                Premiere:
-              </div>
-              <div>
-                {moment(Date.parse(release_date)).format("MMMM YYYY")}
-              </div>
-            </div>
-            <div className="runtime">
-              <div>
-                Runtime:
-              </div>
-              <div>
-                {runtime}
-              </div>
-            </div>
-            <div className="genres">
-              <div>{""}</div>
-              {genresList}
-            </div>
-          </div>
-          <div className="tagline">
-            {tagline}
-          </div>
-        </div>
-          <div className="movie-img-container">
-            <img
-                className="movie-img-item"
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                alt={`Backdrop for ${title}`}
-              />
-            { !nowPlaying && (
-               <StaticImage backdrop_path={backdrop_path} title={title} isNowPlaying={isNowPlaying} />
-            )}
-            { nowPlaying && (
-              <Youtube currentVideoID={currentVideoID} />
-            )}
-          </div>
+      {title && (
+           <div className="movie-view">
+           <div className="info-container">
+             <div className="movie-title">{title}</div>
+             <div className="ratings-container">
+               <div className="popularity">
+                 <div>Popularity: {popularity}</div>
+                 <div className="rating-score">Rating: {vote_average} / 10</div>
+                 <StarRatings
+                   rating={(vote_average / 2)}
+                   starRatedColor="rgb(76, 160, 175)"
+                   starDimension="20px"
+                   numberOfStars={5}
+                   starSpacing="1px"
+                   name='rating'
+                 />
+               </div>
+               <div className="premiere-date">
+                 <div>
+                   Premiere:
+                 </div>
+                 <div>
+                   {moment(Date.parse(release_date)).format("MMMM YYYY")}
+                 </div>
+               </div>
+               <div className="runtime">
+                 <div>
+                   Runtime:
+                 </div>
+                 <div>
+                   {readableRuntime()}
+                 </div>
+               </div>
+               <div className="genres">
+                 <div>{""}</div>
+                 {genresList}
+               </div>
+             </div>
+             <div className="tagline">
+               {tagline}
+             </div>
+           </div>
+             <div className="movie-img-container">
+               <img
+                   className="movie-img-item"
+                   src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                   alt={`Backdrop for ${title}`}
+                 />
+               { !nowPlaying && (
+                  <StaticImage backdrop_path={backdrop_path} title={title} isNowPlaying={isNowPlaying} />
+               )}
+               { nowPlaying && (
+                 <Youtube currentVideoID={currentVideoID} />
+               )}
+             </div>
 
-        <p>{overview}</p>
-        <Reviews id={id} />
+           <p>{overview}</p>
+           <Reviews id={id} />
 
-        <Link
-          onClick={handleClickSetSub}
-          to='/'
-        >
-          See More Movies Like{title}
-        </Link>
-      </div>
+           <Link
+             onClick={handleClickSetSub}
+             to='/'
+           >
+             See More Movies Like{title}
+           </Link>
+         </div>
+      )}
+
     </div>
   );
 
