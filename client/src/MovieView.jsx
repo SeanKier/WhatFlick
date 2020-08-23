@@ -65,8 +65,12 @@ const MovieView = ({ id, setSubGenres }) => {
     getMovieData(id);
   }, []);
 
-  const handleClickSetSub = () => {
+  const handleClickMoreLike = () => {
     setSubGenres([currentMovie.genres[0].name]);
+  };
+
+  const handleClickSetNewSub = (event) => {
+    setSubGenres([event.target.innerHTML]);
   };
 
   const { imdb_id, title, popularity, overview, backdrop_path,
@@ -74,15 +78,32 @@ const MovieView = ({ id, setSubGenres }) => {
   if (currentMovie === {}) {
     return <div>... Loading ...</div>;
   }
-  let genresList = '';
+
+  let genreList = null;
   if (genres !== undefined) {
-    genres.forEach((currentGenre, i) => {
-      if (i !== genres.length - 1) {
-        genresList += `${currentGenre.name}, `;
-      } else {
-        genresList += currentGenre.name;
-      }
-    })
+    genreList = (
+      <div>
+        {genres.map((type, i) => {
+          let comma = comma = <span>, </span>;
+          if (i === genres.length - 1) {
+            comma = null;
+          }
+          return (
+            <span
+                key={i}
+              >
+                <Link
+                  className="link"
+                  onClick={handleClickSetNewSub}
+                  to="/"
+                >
+                  {type.name}
+                </Link>
+                {comma}
+              </span>
+          )})}
+      </div>
+    );
   }
 
   const readableRuntime = () => {
@@ -145,7 +166,7 @@ const MovieView = ({ id, setSubGenres }) => {
             </div>
             <div className="genres">
               <div>{""}</div>
-              {genresList}
+              {genreList}
             </div>
           </div>
           <div className="tagline">
@@ -168,7 +189,7 @@ const MovieView = ({ id, setSubGenres }) => {
         <p>{overview}</p>
         <Reviews id={id} />
         <Link
-          onClick={handleClickSetSub}
+          onClick={handleClickMoreLike}
           to="/"
         >
           See More Movies Like {title}
