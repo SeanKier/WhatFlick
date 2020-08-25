@@ -33,6 +33,12 @@ const StaticImage = ({ backdrop_path, title, isNowPlaying }) => {
   );
 };
 
+StaticImage.propTypes = {
+  backdrop_path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  isNowPlaying: PropTypes.func.isRequired,
+};
+
 const MovieView = ({ id, setSubGenres }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
@@ -65,16 +71,13 @@ const MovieView = ({ id, setSubGenres }) => {
     getMovieData(id);
   }, []);
 
-  const handleClickMoreLike = () => {
-    setSubGenres([currentMovie.genres[0].name]);
-  };
-
   const handleClickSetNewSub = (event) => {
     setSubGenres([event.target.innerHTML]);
   };
 
   const { imdb_id, title, popularity, overview, backdrop_path,
     poster_path, release_date, tagline, runtime, genres, vote_average } = currentMovie;
+
   if (currentMovie === {}) {
     return <div>... Loading ...</div>;
   }
@@ -189,14 +192,13 @@ const MovieView = ({ id, setSubGenres }) => {
           )}
         </div>
         <p>{overview}</p>
-        <Reviews id={id} />
         <Link
           className="link"
-          onClick={handleClickMoreLike}
-          to="/"
+          to="/morelike"
         >
           See More Movies Like {title}
         </Link>
+        <Reviews id={id} />
       </div>
       )}
     </div>
