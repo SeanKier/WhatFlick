@@ -5,6 +5,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import SearchFeed from './SearchFeed';
 import MovieView from './MovieView';
 import Home from './Home';
+import SimiliarMovies from './SimiliarMovies';
 
 const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
@@ -72,6 +73,16 @@ const App = () => {
               {...props}
               updateID={updateMovieID}
               searchTerm={searchTerm}
+            />
+          )}
+        />
+        <Route
+          path="/morelike"
+          render={(props) => (
+            <SimiliarMovies
+              {...props}
+              updateID={updateMovieID}
+              id={currentMovieID}
             />
           )}
         />
