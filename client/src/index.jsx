@@ -2,15 +2,29 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
+import SearchFeed from './SearchFeed';
 import MovieView from './MovieView';
 import Home from './Home';
 
 const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
   const [subGenres, setSubGenres] = useState(['All']);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <Router>
+      <div className="search-form">
+        <input type="text" name="search" onChange={handleChange} />
+        <Link
+          to="/search"
+        >
+          <div>Search</div>
+        </Link>
+      </div>
       <div className="wrapper">
         <Link
           className="center"
@@ -36,6 +50,15 @@ const App = () => {
               {...props}
               id={currentMovieID}
               setSubGenres={setSubGenres}
+            />
+          )}
+        />
+        <Route
+          path="/search"
+          render={(props) => (
+            <SearchFeed
+              {...props}
+              searchTerm={searchTerm}
             />
           )}
         />
