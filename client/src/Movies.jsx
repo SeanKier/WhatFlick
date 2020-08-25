@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import OtherView from './index';
-
 const CurrentMovie = ({ currentMovie, updateID }) => {
   const {
     title, poster_path, vote_average, overview, id
@@ -44,14 +42,14 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
       <Link
         className="link"
         onClick={handleClick}
-        to="/other"
+        to="/movie"
       >
         {movieTitle}
       </Link>
 
       <Link
         onClick={handleClick}
-        to="/other"
+        to="/movie"
       >
         <img
           className="avatar rounded"
@@ -80,7 +78,7 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
       <Link
         className="link more-info"
         onClick={handleClick}
-        to="/other"
+        to="/movie"
       >
         MoreInfo
       </Link>
