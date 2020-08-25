@@ -24,7 +24,7 @@ const TrendingItem = ({ movie, updateID, index }) => {
         <Link
           className="link"
           onClick={handleClickUpdateID}
-          to="/other"
+          to="/movie"
         >
           <h3>
             {title}
@@ -32,7 +32,7 @@ const TrendingItem = ({ movie, updateID, index }) => {
         </Link>
         <Link
           onClick={handleClickUpdateID}
-          to="/other"
+          to="/movie"
         >
           <img
             className="carosouel-image"

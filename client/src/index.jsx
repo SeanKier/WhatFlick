@@ -17,14 +17,6 @@ const App = () => {
 
   return (
     <Router>
-      <div className="search-form">
-        <input type="text" name="search" onChange={handleChange} />
-        <Link
-          to="/search"
-        >
-          <div>Search</div>
-        </Link>
-      </div>
       <div className="wrapper">
         <Link
           className="center"
@@ -32,6 +24,26 @@ const App = () => {
         >
           <h1 id="site-title">Watch Tonight</h1>
         </Link>
+          <div className="search-form">
+            <input
+              className="search-input"
+              type="text"
+              name="search"
+              size="65"
+              placeholder="Search for movies here"
+              onChange={handleChange}
+            />
+            <Link
+              to="/search"
+            >
+              <button
+                type="button"
+                className="search-button"
+              >
+                Search
+              </button>
+            </Link>
+          </div>
         <Route
           exact path="/"
           render={(props) => (
@@ -44,7 +56,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/other"
+          path="/movie"
           render={(props) => (
             <MovieView
               {...props}
@@ -58,6 +70,7 @@ const App = () => {
           render={(props) => (
             <SearchFeed
               {...props}
+              updateID={updateMovieID}
               searchTerm={searchTerm}
             />
           )}

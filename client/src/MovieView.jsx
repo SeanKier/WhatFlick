@@ -191,6 +191,7 @@ const MovieView = ({ id, setSubGenres }) => {
         <p>{overview}</p>
         <Reviews id={id} />
         <Link
+          className="link"
           onClick={handleClickMoreLike}
           to="/"
         >

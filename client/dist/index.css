@@ -407,3 +407,35 @@ body {
   cursor: pointer;
   opacity: 1;
 }
+
+.search-form {
+  margin-bottom: 15px;
+}
+
+.home-button {
+  color: rgb(56, 121, 133);
+}
+
+.search-button {
+  border: none;
+  margin: 10px;
+  background: red;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 500ms ease;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  color: red;
+  background:rgba(136, 103, 103, 0.452);
+}
+
+.search-input {
+  padding: 10px 5px;
+  line-height: 10px;
+}
