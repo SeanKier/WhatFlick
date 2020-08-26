@@ -111,6 +111,7 @@ const ActorView = ({ actorID, updateID }) => {
   }, []);
 
   const { name, biography, birthday, deathday, profile_path } = actorDetails;
+  currentActorCredits.sort((a, b) => (Date.parse(b.release_date) - Date.parse(a.release_date)));
 
   return (
     <div className="actor-view">
