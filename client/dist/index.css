@@ -63,6 +63,7 @@ body {
 #single-movie-container {
   background-color: rgb(233, 233, 233);
   width: 300px;
+  min-height: 590px;
   margin: 15px;
 }
 
