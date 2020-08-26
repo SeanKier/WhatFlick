@@ -8,6 +8,8 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 import Reviews from './Reviews';
 import Youtube from './Youtube';
+import Credits from './Credits';
+import Crew from './Crew';
 import { api_key, youtubeAPIkey } from './APIKEY';
 
 const StaticImage = ({ backdrop_path, title, isNowPlaying }) => {
@@ -39,10 +41,12 @@ StaticImage.propTypes = {
   isNowPlaying: PropTypes.func.isRequired,
 };
 
-const MovieView = ({ id, setSubGenres }) => {
+const MovieView = ({ id, setSubGenres, setActorID }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
   const [nowPlaying, isNowPlaying] = useState(false);
+  const [movieCast, updateCast] = useState([]);
+  const [movieCrew, updateCrew] = useState([]);
 
   const searchYouTube = (query) => {
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=${youtubeAPIkey}`)
@@ -55,11 +59,22 @@ const MovieView = ({ id, setSubGenres }) => {
       });
   };
 
-  const getMovieData = (currentID) => {
-    fetch(`https://api.themoviedb.org/3/movie/${currentID}?api_key=${api_key}`)
+  const getYoutubeQuery = (query) => {
+    fetch(`https://api.themoviedb.org/3/movie/${query}/videos?api_key=${api_key}`)
       .then((response) => response.json())
       .then((response) => {
-        searchYouTube(response.title);
+        searchYouTube(response.results[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getMovieData = () => {
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+      .then((response) => response.json())
+      .then((response) => {
+        getYoutubeQuery(response.id);
         updateMovie(response);
       })
       .catch((err) => {
@@ -67,8 +82,21 @@ const MovieView = ({ id, setSubGenres }) => {
       });
   };
 
+  const getMovieCredits = () => {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`)
+      .then((response) => response.json())
+      .then((response) => {
+        updateCast(response.cast);
+        updateCrew(response.crew);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    getMovieData(id);
+    getMovieData();
+    getMovieCredits();
   }, []);
 
   const handleClickSetNewSub = (event) => {
@@ -198,6 +226,8 @@ const MovieView = ({ id, setSubGenres }) => {
         >
           See More Movies Like {title}
         </Link>
+        <Crew movieCrew={movieCrew} />
+        <Credits movieCast={movieCast} setActorID={setActorID} />
         <Reviews id={id} />
       </div>
       )}
