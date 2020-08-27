@@ -89,7 +89,6 @@ const ActorView = ({ actorID, updateID }) => {
       .then((response) => response.json())
       .then((response) => {
         updateActorCredits(response.cast);
-        console.log(response.cast);
       })
       .catch((err) => {
         console.log(err);

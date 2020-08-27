@@ -63,7 +63,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
     fetch(`https://api.themoviedb.org/3/movie/${query}/videos?api_key=${api_key}`)
       .then((response) => response.json())
       .then((response) => {
-        searchYouTube(response.results[0]);
+        searchYouTube(response.results[0].key);
       })
       .catch((err) => {
         console.log(err);
