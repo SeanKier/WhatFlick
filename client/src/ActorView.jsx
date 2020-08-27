@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FaStar } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { api_key } from './APIKEY';
+import defaultImg from './images/default-user-icon-4.jpg';
 
 const ActorCredit = ({ credit, profile_path, updateID }) => {
   const { character, id, poster_path, release_date, title, vote_average } = credit;
@@ -113,15 +116,28 @@ const ActorView = ({ actorID, updateID }) => {
   const { name, biography, birthday, deathday, profile_path } = actorDetails;
   currentActorCredits.sort((a, b) => (Date.parse(b.release_date) - Date.parse(a.release_date)));
 
+  const backUpImg = (
+    <div className="backup-img actor-img rounded">
+      <FontAwesomeIcon
+        className="user-icon-actor"
+        icon={faUserCircle}
+      />
+    </div>
+  );
   return (
     <div className="actor-view">
       <div className="actor-container">
         <div>
-        <img
-          className="actor-img rounded"
-          src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-          alt={`Avatar for ${name}`}
-        />
+          { profile_path && (
+          <img
+            className="actor-img rounded"
+            src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+            alt={defaultImg}
+          />
+          )}
+          { !profile_path && (
+            backUpImg
+          )}
         </div>
         <div className="actor-bio">
           <div className="cast-title actor-bio-item">

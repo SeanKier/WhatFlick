@@ -537,3 +537,17 @@ body {
   text-align: left;
   font-size: 30px;
 }
+
+.backup-img {
+  min-height: 270px;
+  min-width: 180px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon-actor {
+  font-size: 100px;
+  color: rgb(136, 136, 132);
+}
