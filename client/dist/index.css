@@ -1,4 +1,5 @@
-@import url(//db.onlinewebfonts.com/c/ab83b275830b2d585ea027c47e3b237a?family=GraphiqueW01-Regular);
+/* @import url(//db.onlinewebfonts.com/c/ab83b275830b2d585ea027c47e3b237a?family=GraphiqueW01-Regular); */
+@font-face {font-family: "GraphiqueW01-Regular"; src: url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.eot"); src: url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.woff") format("woff"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.svg#GraphiqueW01-Regular") format("svg"); }
 
 body {
   font-family: 'Roboto', sans-serif;
