@@ -162,12 +162,21 @@ body {
 .news-description {
   text-align: left;
 }
+
+.news-title {
+  margin-bottom: 0px;
+  text-align: center;
+  margin-left: 80px;
+}
 .trending-list {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex-wrap: nowrap;
+}
 
+.news-container-container {
+  margin-top: -10px;
 }
 
 .trending-item {
@@ -367,10 +376,15 @@ body {
   width: 1000px;
   min-width: 500px;
   max-width: 1000px;
+  max-height: 500px;
 }
 
 .trending-carousel {
   margin-right: 20px;
+}
+
+.carosouel-image {
+  margin-top: 10px;
 }
 
 .trending-title {

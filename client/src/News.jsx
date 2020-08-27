@@ -20,9 +20,9 @@ const StoryItem = ({ story, index }) => {
         target="_blank"
         rel="noreferrer"
       >
-        <p className="link">
+        <div className="link">
           {title}
-        </p>
+        </div>
       </a>
       { index === 0 && (
         <div>
@@ -31,9 +31,9 @@ const StoryItem = ({ story, index }) => {
             src={urlToImage}
             alt={`Backdrop for ${title}`}
           />
-          <p className="news-description">
-            {description}
-          </p>
+          <div className="news-description">
+            {`${description.slice(0, 120)}...`}
+          </div>
         </div>
       )}
 
@@ -75,7 +75,7 @@ const News = () => {
       <h3 className="news-title">
         News
       </h3>
-      <div>
+      <div className="news-container-container">
         <ul className="news-container">
           {netflixNews.map((story, i) => (
             <StoryItem key={i} index={i} story={story} />
