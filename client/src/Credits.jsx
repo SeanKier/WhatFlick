@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-import defaultImg from './images/default-user-icon-4.jpg';
-
 const CastMember = ({ actor, setActorID }) => {
   const { character, id, name, profile_path } = actor;
   const handleClick = () => {

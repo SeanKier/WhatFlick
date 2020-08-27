@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { api_key } from './APIKEY';
-import defaultImg from './images/default-user-icon-4.jpg';
 
 const ActorCredit = ({ credit, profile_path, updateID }) => {
   const { character, id, poster_path, release_date, title, vote_average } = credit;
