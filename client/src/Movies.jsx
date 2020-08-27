@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const CurrentMovie = ({ currentMovie, updateID }) => {
+const CurrentMovie = ({ currentMovie, updateID, index }) => {
   const {
     title, poster_path, vote_average, overview, id
   } = currentMovie;
@@ -36,8 +36,7 @@ const CurrentMovie = ({ currentMovie, updateID }) => {
 
   return (
     <div
-      id="single-movie-container"
-      className="rounded"
+      className="rounded single-movie-container"
     >
       <Link
         className="link"
@@ -98,7 +97,7 @@ const Movies = ({ currentMovies, updateID }) => (
 
   <div id="movies-container">
     {currentMovies.map((movie, i) => (
-      <CurrentMovie key={i} currentMovie={movie} updateID={updateID} />
+      <CurrentMovie key={i} currentMovie={movie} updateID={updateID} index={i} />
     ))}
   </div>
 );

@@ -1,5 +1,9 @@
 /* @import url(//db.onlinewebfonts.com/c/ab83b275830b2d585ea027c47e3b237a?family=GraphiqueW01-Regular); */
 @font-face {font-family: "GraphiqueW01-Regular"; src: url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.eot"); src: url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.woff") format("woff"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ab83b275830b2d585ea027c47e3b237a.svg#GraphiqueW01-Regular") format("svg"); }
+html {
+  scroll-behavior: smooth;
+  overflow-anchor: none;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -66,7 +70,7 @@ body {
   max-width: 1500px;
 }
 
-#single-movie-container {
+.single-movie-container {
   background-color: rgb(233, 233, 233);
   width: 300px;
   min-height: 590px;
