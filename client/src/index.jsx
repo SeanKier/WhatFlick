@@ -17,6 +17,7 @@ const App = () => {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  // https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg
 
   return (
     <Router>
@@ -45,7 +46,14 @@ const App = () => {
           className="center"
           to="/"
         >
-          <h1 id="site-title">Watch Tonight</h1>
+          <div className="titles">
+            <h1 id="site-title">Watch Tonight</h1>
+            <img
+              className="moviedb-logo"
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+              alt="The movie database logo"
+            />
+          </div>
         </Link>
 
         <Route
