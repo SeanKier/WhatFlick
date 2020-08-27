@@ -18,17 +18,17 @@ const TrendingItem = ({ movie, updateID, index }) => {
       <div
         className="trending-carosouel-item"
       >
-        <div className="trending-title">
+        <h3 className="trending-title">
           Currently Trending
-        </div>
+        </h3>
         <Link
           className="link"
           onClick={handleClickUpdateID}
           to="/movie"
         >
-          <h3>
+          <div>
             {title}
-          </h3>
+          </div>
         </Link>
         <Link
           onClick={handleClickUpdateID}
