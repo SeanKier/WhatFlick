@@ -29,7 +29,7 @@ const CastMember = ({ actor, setActorID }) => {
           <img
             className="actor-img rounded"
             src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-            alt={defaultImg}
+            alt={`No Image found for ${actor}`}
           />
         )}
         { !profile_path && (

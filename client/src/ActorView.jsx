@@ -131,7 +131,7 @@ const ActorView = ({ actorID, updateID }) => {
           <img
             className="actor-img rounded"
             src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-            alt={defaultImg}
+            alt={`No image found for ${name}`}
           />
           )}
           { !profile_path && (
