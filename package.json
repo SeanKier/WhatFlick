@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/index.js",
-    "build": "webpack -d --watch"
+    "start": "node server/index.js",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.5",
     "moment": "^2.27.0",

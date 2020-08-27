@@ -26,7 +26,7 @@ const TrendingItem = ({ movie, updateID, index }) => {
           onClick={handleClickUpdateID}
           to="/movie"
         >
-          <div>
+          <div className="carosouel-movie-title link">
             {title}
           </div>
         </Link>
