@@ -389,6 +389,11 @@ body {
 
 .trending-title {
   text-align: center;
+  margin-bottom: 7px;
+}
+
+.carosouel-movie-title {
+  margin-bottom: 8px;
 }
 
 .right-button {
