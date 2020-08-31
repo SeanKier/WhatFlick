@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 import Movies from './Movies';
 
 const SearchFeed = ({ searchTerm, updateID }) => {
   const [currentMovies, setCurrentMovies] = useState([]);
 
   const fetchMovie = () => {
-    const queryString = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
+    const queryString = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
     fetch(queryString)
       .then((response) => response.json())
       .then((response) => {

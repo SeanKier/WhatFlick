@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 import Movies from './Movies';
 
 const SimiliarMovies = ({ id, updateID }) => {
   const [currentMovies, setCurrentMovies] = useState([]);
 
   const fetchSimiliarMovies = () => {
-    const queryString = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${api_key}&language=en-US&page=1`;
+    const queryString = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${movieDBKey}&language=en-US&page=1`;
     fetch(queryString)
       .then((response) => response.json())
       .then((response) => {

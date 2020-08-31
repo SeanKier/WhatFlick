@@ -5,7 +5,7 @@ import Navbar from './Navigation';
 import Movies from './Movies';
 import Trending from './Trending';
 import News from './News';
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 
 const Home = ({ updateID, subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
@@ -39,7 +39,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
       'Top Rated': 'top_rated',
       Upcoming: 'upcoming',
     };
-    let queryString = `https://api.themoviedb.org/3/movie/${options[currentGenre]}?api_key=${api_key}&language=en-US&page=${currentPage}`;
+    let queryString = `https://api.themoviedb.org/3/movie/${options[currentGenre]}?api_key=${movieDBKey}&language=en-US&page=${currentPage}`;
     if (subGenres[0] !== 'All') {
       queryString += `&with_genres=${subGenreMap[subGenres[0]]}`;
     }

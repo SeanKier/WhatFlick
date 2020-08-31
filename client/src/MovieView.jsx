@@ -10,7 +10,7 @@ import Reviews from './Reviews';
 import Youtube from './Youtube';
 import Credits from './Credits';
 import Crew from './Crew';
-import { api_key, youtubeAPIkey } from './APIKEY';
+import { movieDBKey, youtubeAPIkey } from './APIKEY';
 
 const StaticImage = ({ backdrop_path, title, isNowPlaying }) => {
   const handleClickIsPlaying = () => {
@@ -60,7 +60,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
   };
 
   const getYoutubeQuery = (query) => {
-    fetch(`https://api.themoviedb.org/3/movie/${query}/videos?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${query}/videos?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         searchYouTube(response.results[0].key);
@@ -71,7 +71,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
   };
 
   const getMovieData = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         getYoutubeQuery(response.id);
@@ -83,7 +83,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
   };
 
   const getMovieCredits = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         updateCast(response.cast);

@@ -6,7 +6,7 @@ import { FaStar } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 
 const ActorCredit = ({ credit, profile_path, updateID }) => {
   const { character, id, poster_path, release_date, title, vote_average } = credit;
@@ -85,7 +85,7 @@ const ActorView = ({ actorID, updateID }) => {
   const [actorDetails, updateDetails] = useState({});
 
   const getCredits = () => {
-    fetch(`https://api.themoviedb.org/3/person/${actorID}/movie_credits?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/person/${actorID}/movie_credits?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         updateActorCredits(response.cast);
@@ -96,7 +96,7 @@ const ActorView = ({ actorID, updateID }) => {
   };
 
   const getDetails = () => {
-    fetch(`https://api.themoviedb.org/3/person/${actorID}?api_key=${api_key}&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/person/${actorID}?api_key=${movieDBKey}&language=en-US`)
       .then((response) => response.json())
       .then((response) => {
         updateDetails(response);
