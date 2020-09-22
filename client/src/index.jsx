@@ -17,8 +17,11 @@ const App = () => {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
-  // https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg
 
+  const onKeyDownHandler = (event) => {
+
+    console.log('a thing happened', event.keyCode)
+  };
   return (
     <Router>
       <div className="wrapper">
@@ -30,17 +33,18 @@ const App = () => {
             size="65"
             placeholder="Search for movies here"
             onChange={handleChange}
+            onKeyPress={onKeyDownHandler}
           />
           <Link
             to="/search"
           >
-              <button
-                type="button"
-                className="search-button"
-              >
-                Search
-              </button>
-            </Link>
+            <button
+              type="submit"
+              className="search-button"
+            >
+              Search
+            </button>
+          </Link>
           </div>
         <Link
           className="center"
