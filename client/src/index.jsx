@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Link, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 import SearchFeed from './SearchFeed';
 import MovieView from './MovieView';
@@ -13,15 +13,26 @@ const App = () => {
   const [subGenres, setSubGenres] = useState(['All']);
   const [searchTerm, setSearchTerm] = useState('');
   const [actorID, setActorID] = useState(0);
+  const [searched, setSearched] = useState(false);
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    if (event.target.value) {
+      setSearchTerm(event.target.value);
+    }
+  };
+
+  const handleSearchClick = () => {
+    if (searchTerm !== '') {
+      setSearched(true);
+    }
   };
 
   const onKeyDownHandler = (event) => {
-
-    console.log('a thing happened', event.keyCode)
+    if (event.key === 'Enter') {
+      setSearched(true);
+    }
   };
+
   return (
     <Router>
       <div className="wrapper">
@@ -35,17 +46,15 @@ const App = () => {
             onChange={handleChange}
             onKeyPress={onKeyDownHandler}
           />
-          <Link
-            to="/search"
+          {(searchTerm !== '' && searched) && <Redirect to="/search" />}
+          <button
+            type="submit"
+            className="search-button"
+            onClick={handleSearchClick}
           >
-            <button
-              type="submit"
-              className="search-button"
-            >
-              Search
-            </button>
-          </Link>
-          </div>
+            Search
+          </button>
+        </div>
         <Link
           className="center"
           to="/"
