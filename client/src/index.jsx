@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Route, Link, Redirect, BrowserRouter as Router,
+} from 'react-router-dom';
 
 import SearchFeed from './SearchFeed';
 import MovieView from './MovieView';
@@ -14,6 +16,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [actorID, setActorID] = useState(0);
   const [searched, setSearched] = useState(false);
+  const [searchFlag, setFlag] = useState(true);
 
   const handleChange = (event) => {
     if (event.target.value) {
@@ -21,17 +24,27 @@ const App = () => {
     }
   };
 
+  const handleFlagChange = () => {
+    setFlag(!searchFlag);
+  };
+
   const handleSearchClick = () => {
+    handleFlagChange();
     if (searchTerm !== '') {
       setSearched(true);
     }
   };
 
   const onKeyDownHandler = (event) => {
+    handleFlagChange();
     if (event.key === 'Enter') {
       setSearched(true);
     }
   };
+
+  useEffect(() => {
+    setSearched(false);
+  }, [searchTerm]);
 
   return (
     <Router>
@@ -98,6 +111,8 @@ const App = () => {
               {...props}
               updateID={updateMovieID}
               searchTerm={searchTerm}
+              searched={searched}
+              searchFlag={searchFlag}
             />
           )}
         />
