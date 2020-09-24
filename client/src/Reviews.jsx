@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 
 const CurrentReview = ({ review }) => {
   const [readMore, isReadMore] = useState(false);
@@ -61,7 +61,7 @@ const Reviews = ({ id }) => {
   const [currentReviews, updateReviews] = useState([]);
 
   const getReviews = (currentID) => {
-    fetch(`https://api.themoviedb.org/3/movie/${currentID}/reviews?api_key=${api_key}&language=en-US&page=1`)
+    fetch(`https://api.themoviedb.org/3/movie/${currentID}/reviews?api_key=${movieDBKey}&language=en-US&page=1`)
       .then((response) => response.json())
       .then((response) => {
         updateReviews(response.results);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { api_key } from './APIKEY';
+import { movieDBKey } from './APIKEY';
 import Movies from './Movies';
 
 const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
@@ -20,6 +20,7 @@ const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
           console.log(err);
         });
     }
+
   };
   useEffect(() => {
     fetchMovie();
