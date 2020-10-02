@@ -58,7 +58,7 @@ CastMember.propTypes = {
     character: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    profile_path: PropTypes.string.isRequired,
+    profile_path: PropTypes.string,
   }).isRequired,
   setActorID: PropTypes.func.isRequired,
 };

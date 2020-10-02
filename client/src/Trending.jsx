@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
-const TrendingItem = ({ movie, updateID, index }) => {
+import MovieContext from './MovieContext';
+
+const TrendingItem = ({ movie, index }) => {
   const { title, id } = movie;
+  const { updateMovieID } = useContext(MovieContext);
   const handleClickUpdateID = () => {
-    updateID(id);
+    updateMovieID(id);
   };
 
   return (
@@ -50,11 +53,10 @@ TrendingItem.propTypes = {
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
-  updateID: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
 };
 
-const Trending = ({ movies, updateID }) => {
+const Trending = ({ movies }) => {
   const [currentIndex, changeMovie] = useState(0);
 
   const handleRightClick = () => {
@@ -90,7 +92,7 @@ const Trending = ({ movies, updateID }) => {
         )}
         <div className="cards-slider-wrapper">
           {movies.map((movie, i) => (
-            <TrendingItem key={i} movie={movie} index={i} updateID={updateID} />
+            <TrendingItem key={i} movie={movie} index={i} />
           ))}
         </div>
       </div>
@@ -101,7 +103,6 @@ const Trending = ({ movies, updateID }) => {
 
 Trending.propTypes = {
   movies: PropTypes.array.isRequired,
-  updateID: PropTypes.func.isRequired,
 };
 
 export default Trending;

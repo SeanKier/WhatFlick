@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import Youtube from './Youtube';
 import Credits from './Credits';
 import Crew from './Crew';
 import { movieDBKey, youtubeAPIkey } from './APIKEY';
+import MovieContext from './MovieContext';
 
 const StaticImage = ({ backdrop_path, title, isNowPlaying }) => {
   const handleClickIsPlaying = () => {
@@ -41,12 +42,14 @@ StaticImage.propTypes = {
   isNowPlaying: PropTypes.func.isRequired,
 };
 
-const MovieView = ({ id, setSubGenres, setActorID }) => {
+const MovieView = ({ setSubGenres, setActorID }) => {
   const [currentMovie, updateMovie] = useState({});
   const [currentVideoID, getVideo] = useState(null);
   const [nowPlaying, isNowPlaying] = useState(false);
   const [movieCast, updateCast] = useState([]);
   const [movieCrew, updateCrew] = useState([]);
+
+  const { currentMovieID } = useContext(MovieContext);
 
   const searchYouTube = (query) => {
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${query}%20trailer&type=video&videoDefinition=high&key=${youtubeAPIkey}`)
@@ -71,7 +74,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
   };
 
   const getMovieData = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${movieDBKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/${currentMovieID}?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         getYoutubeQuery(response.id);
@@ -83,7 +86,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
   };
 
   const getMovieCredits = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${movieDBKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/${currentMovieID}/credits?api_key=${movieDBKey}`)
       .then((response) => response.json())
       .then((response) => {
         updateCast(response.cast);
@@ -228,7 +231,7 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
         </Link>
         <Crew movieCrew={movieCrew} />
         <Credits movieCast={movieCast} setActorID={setActorID} />
-        <Reviews id={id} />
+        <Reviews id={currentMovieID} />
       </div>
       )}
     </div>
@@ -236,8 +239,8 @@ const MovieView = ({ id, setSubGenres, setActorID }) => {
 };
 
 MovieView.propTypes = {
-  id: PropTypes.number.isRequired,
   setSubGenres: PropTypes.func.isRequired,
+  setActorID: PropTypes.func .isRequired,
 };
 
 export default MovieView;

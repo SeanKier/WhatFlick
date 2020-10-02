@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { movieDBKey } from './APIKEY';
 import Movies from './Movies';
 
-const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
+const SearchFeed = ({ searchTerm, searched, searchFlag }) => {
   const [currentMovies, setCurrentMovies] = useState([]);
 
   const fetchMovie = () => {
     if (searched) {
-      const queryString = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
+      const queryString = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
       fetch(queryString)
         .then((response) => response.json())
         .then((response) => {
@@ -20,7 +20,6 @@ const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
           console.log(err);
         });
     }
-
   };
   useEffect(() => {
     fetchMovie();
@@ -38,7 +37,7 @@ const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
       )}
       { currentMovies.length > 0 && (
         <div>
-          <Movies currentMovies={currentMovies} updateID={updateID} />
+          <Movies currentMovies={currentMovies} />
         </div>
       )}
       <Link
@@ -53,7 +52,6 @@ const SearchFeed = ({ searchTerm, updateID, searched, searchFlag }) => {
 
 SearchFeed.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  updateID: PropTypes.func.isRequired,
   searched: PropTypes.bool.isRequired,
   searchFlag: PropTypes.bool.isRequired,
 };

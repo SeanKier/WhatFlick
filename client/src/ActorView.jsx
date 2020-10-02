@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -7,12 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { movieDBKey } from './APIKEY';
+import MovieContext from './MovieContext';
 
-const ActorCredit = ({ credit, profile_path, updateID }) => {
+const ActorCredit = ({ credit, profile_path }) => {
   const { character, id, poster_path, release_date, title, vote_average } = credit;
+  const { updateMovieID } = useContext(MovieContext);
 
   const handleClick = () => {
-    updateID(id);
+    updateMovieID(id);
   };
   return (
     <div className="actor-credit-item">
@@ -71,16 +73,15 @@ ActorCredit.propTypes = {
   credit: PropTypes.shape({
     character: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     release_date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,
   }).isRequired,
-  profile_path: PropTypes.string.isRequired,
-  updateID: PropTypes.func.isRequired,
+  profile_path: PropTypes.string
 };
 
-const ActorView = ({ actorID, updateID }) => {
+const ActorView = ({ actorID }) => {
   const [currentActorCredits, updateActorCredits] = useState([]);
   const [actorDetails, updateDetails] = useState({});
 
@@ -152,7 +153,7 @@ const ActorView = ({ actorID, updateID }) => {
         </div>
         <div className="credits-container">
           {currentActorCredits.map((credit, i) => (
-            <ActorCredit key={i} credit={credit} profile_path={profile_path} updateID={updateID} />
+            <ActorCredit key={i} credit={credit} profile_path={profile_path} />
           ))}
         </div>
       </div>
@@ -162,7 +163,6 @@ const ActorView = ({ actorID, updateID }) => {
 
 ActorView.propTypes = {
   actorID: PropTypes.number.isRequired,
-  updateID: PropTypes.func.isRequired,
 };
 
 export default ActorView;

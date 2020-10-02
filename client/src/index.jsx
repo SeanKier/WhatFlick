@@ -9,6 +9,7 @@ import MovieView from './MovieView';
 import Home from './Home';
 import SimiliarMovies from './SimiliarMovies';
 import ActorView from './ActorView';
+import MovieContext from './MovieContext';
 
 const App = () => {
   const [currentMovieID, updateMovieID] = useState(0);
@@ -81,61 +82,54 @@ const App = () => {
             />
           </div>
         </Link>
-
-        <Route
-          exact path="/"
-          render={(props) => (
-            <Home
-              {...props}
-              updateID={updateMovieID}
-              subGenres={subGenres}
-              setSubGenres={setSubGenres}
-            />
-          )}
-        />
-        <Route
-          path="/movie"
-          render={(props) => (
-            <MovieView
-              {...props}
-              id={currentMovieID}
-              setSubGenres={setSubGenres}
-              setActorID={setActorID}
-            />
-          )}
-        />
-        <Route
-          path="/search"
-          render={(props) => (
-            <SearchFeed
-              {...props}
-              updateID={updateMovieID}
-              searchTerm={searchTerm}
-              searched={searched}
-              searchFlag={searchFlag}
-            />
-          )}
-        />
-        <Route
-          path="/morelike"
-          render={(props) => (
-            <SimiliarMovies
-              {...props}
-              updateID={updateMovieID}
-              id={currentMovieID}
-            />
-          )}
-        />
-        <Route
-          path="/actor"
-          render={(props) => (
-            <ActorView
-              {...props}
-              actorID={actorID}
-              updateID={updateMovieID}
-            />
-          )}
-        />
+        <MovieContext.Provider value={{ currentMovieID, updateMovieID }}>
+          <Route
+            exact path="/"
+            render={(props) => (
+              <Home
+                {...props}
+                subGenres={subGenres}
+                setSubGenres={setSubGenres}
+              />
+            )}
+          />
+          <Route
+            path="/movie"
+            render={(props) => (
+              <MovieView
+                {...props}
+                setSubGenres={setSubGenres}
+                setActorID={setActorID}
+              />
+            )}
+          />
+          <Route
+            path="/search"
+            render={(props) => (
+              <SearchFeed
+                {...props}
+                searchTerm={searchTerm}
+                searched={searched}
+                searchFlag={searchFlag}
+              />
+            )}
+          />
+          <Route
+            path="/morelike"
+            render={(props) => (
+              <SimiliarMovies />
+            )}
+          />
+          <Route
+            path="/actor"
+            render={(props) => (
+              <ActorView
+                {...props}
+                actorID={actorID}
+              />
+            )}
+          />
+        </MovieContext.Provider>
       </div>
     </Router>
   );

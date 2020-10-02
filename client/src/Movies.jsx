@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const CurrentMovie = ({ currentMovie, updateID, index }) => {
+import MovieContext from './MovieContext';
+
+const CurrentMovie = ({ currentMovie, index }) => {
   const {
     title, poster_path, vote_average, overview, id
   } = currentMovie;
@@ -11,8 +13,9 @@ const CurrentMovie = ({ currentMovie, updateID, index }) => {
   if (overview.length > 150) {
     description = `${overview.slice(0, 150)}...`;
   }
+  const { updateMovieID } = useContext(MovieContext);
   const handleClick = () => {
-    updateID(id);
+    updateMovieID(id);
   };
 
   const titleStyle = { fontSize: 15 };
@@ -93,17 +96,16 @@ CurrentMovie.propTypes = {
   }).isRequired,
 };
 
-const Movies = ({ currentMovies, updateID }) => (
-
+const Movies = ({ currentMovies }) => (
   <div id="movies-container">
     {currentMovies.map((movie, i) => (
-      <CurrentMovie key={i} currentMovie={movie} updateID={updateID} index={i} />
+      <CurrentMovie key={i} currentMovie={movie} index={i} />
     ))}
   </div>
 );
 
 Movies.propTypes = {
-  currentMovies: PropTypes.array.isRequired
+  currentMovies: PropTypes.array.isRequired,
 };
 
 export default Movies;

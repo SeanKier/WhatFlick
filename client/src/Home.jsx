@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import Navbar from './Navigation';
@@ -6,12 +6,15 @@ import Movies from './Movies';
 import Trending from './Trending';
 import News from './News';
 import { movieDBKey } from './APIKEY';
+import MovieContext from './MovieContext';
 
-const Home = ({ updateID, subGenres, setSubGenres }) => {
+const Home = ({ subGenres, setSubGenres }) => {
   const [genre, changeGenre] = useState('Now Playing');
   const [movies, updateMovies] = useState([]);
   const [page, nextPage] = useState(1);
   const [currentIndex, changeMovie] = useState(0);
+
+  const { updateMovieID } = useContext(MovieContext);
 
   const genres = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
 
@@ -103,7 +106,6 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
         { movies.length > 0 && (
           <Trending
             movies={movies.slice(0, 4)}
-            updateID={updateID}
             currentIndex={currentIndex}
             changeMovie={changeMovie}
           />
@@ -131,7 +133,7 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
         </select>
       </label>
 
-      <Movies currentMovies={movies.slice(4)} updateID={updateID} />
+      <Movies currentMovies={movies.slice(4)} />
       <button
         type="button"
         onClick={handleNextPage}
@@ -143,7 +145,6 @@ const Home = ({ updateID, subGenres, setSubGenres }) => {
 }
 
 Home.propTypes = {
-  updateID: PropTypes.func.isRequired,
   subGenres: PropTypes.array.isRequired,
   setSubGenres: PropTypes.func.isRequired,
 };

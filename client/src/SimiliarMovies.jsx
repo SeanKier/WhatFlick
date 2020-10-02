@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { movieDBKey } from './APIKEY';
 import Movies from './Movies';
+import MovieContext from './MovieContext';
 
-const SimiliarMovies = ({ id, updateID }) => {
+const SimiliarMovies = () => {
   const [currentMovies, setCurrentMovies] = useState([]);
 
+  const { currentMovieID } = useContext(MovieContext);
   const fetchSimiliarMovies = () => {
-    const queryString = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${movieDBKey}&language=en-US&page=1`;
+    const queryString = `https://api.themoviedb.org/3/movie/${currentMovieID}/similar?api_key=${movieDBKey}&language=en-US&page=1`;
     fetch(queryString)
       .then((response) => response.json())
       .then((response) => {
@@ -35,7 +36,7 @@ const SimiliarMovies = ({ id, updateID }) => {
       )}
       { currentMovies.length > 0 && (
         <div>
-          <Movies currentMovies={currentMovies} updateID={updateID} />
+          <Movies currentMovies={currentMovies} />
         </div>
       )}
       <Link
@@ -46,11 +47,6 @@ const SimiliarMovies = ({ id, updateID }) => {
       </Link>
     </div>
   );
-};
-
-SimiliarMovies.propTypes = {
-  id: PropTypes.number.isRequired,
-  updateID: PropTypes.func.isRequired,
 };
 
 export default SimiliarMovies;
