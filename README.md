@@ -1,5 +1,4 @@
 # WatchFlick
-www.whatflick.com
 Site to find movies to watch currently on streaming services. Users can find currently trending movies as well as broswe similiar movies, recieve movie recomndations, read reviews and also find movies based on their favorite actors and directors.
 ![Image of HomePage](https://i.imgur.com/UjeQAQB.png)
 ![Image of MoveFeed](https://i.imgur.com/sLsaJOG.png)
